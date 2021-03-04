@@ -1,0 +1,39 @@
+{% extends 'frontend/base.html' %}
+
+{% load static %}
+
+{% block main %}
+
+    {% static 'img/kangaroo-team.jpg' as image %}
+    {% include 'frontend/symbols/header.html' with bg_class="bg-gray-50" svg_class="text-gray-100" title='CoCOO Team' text='Unser Team besteht aus Personen mit jahrelanger Erfahrung in der Entwicklung von Projekten.' primary_button='Zu den Seminaren' secondary_button='' image=image image_alt="Kängaroo Team" %}
+
+    <section class="relative shadow z-10">
+        <div class="max-w-7xl mx-auto">
+            <div class="py-32">
+                <div class="px-4 sm:px-6 lg:px-8">
+                    <div class="grid grid-cols-4 gap-6">
+                        {% for member in object_list %}
+                            <div class="flex flex-col items-start">
+                                <div class="w-32">
+                                    <div class="w-full aspect-h-1 aspect-w-1 mb-2">
+                                        <img class="rounded-full object-cover" src="{{ member.image.url }}"
+                                             alt="{{ member.first_name }} {{ member.last_name }}">
+                                    </div>
+                                </div>
+                                <h2 class="text-base tracking-tight font-extrabold text-gray-900 mb-1 sm:text-lg md:text-xl">
+                                    {{ member.first_name }} {{ member.last_name }}
+                                </h2>
+                                <p class="text-sm mb-3">{{ member.short_description }}</p>
+                                <a class="{% include 'frontend/styles/a.txt' %} pl-1"
+                                   href="{% url 'member_detail' member.slug %}">
+                                    Mehr zu {{ member.first_name }}
+                                </a>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock main %}

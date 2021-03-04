@@ -1,0 +1,49 @@
+{% extends 'frontend/base.html' %}
+
+{% load static %}
+{% load imagefit %}
+
+{% block main %}
+
+    <section class="{% include 'frontend/styles/section.txt' %}">
+        <div class=" {% include 'frontend/styles/container.txt' %}">
+            <div class=" {% include 'frontend/styles/padding.txt' %}">
+                <div class="py-16 sm:py-24 border-t-2 border-gray-100">
+                    <div class="pb-16 xl:flex xl:items-center xl:justify-between">
+                        <div class="w-8/12">
+                            <h1 class="text-4xl font-extrabold sm:text-5xl sm:tracking-tight">
+                                <span class="text-gray-900">{{ object.first_name }} {{ object.last_name }}</span>
+                            </h1>
+                            <p class="mt-5 text-xl text-gray-500">
+                                {{ object.short_description }}
+                            </p>
+                        </div>
+                        <div class="w-64">
+                            <div class="w-full aspect-h-1 aspect-w-1 mb-2">
+                                <img class="rounded-full object-cover" src="{{ object.image.url|resize:'300x300' }}"
+                                     alt="{{ object.first_name }} {{ object.last_name }}">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="border-t border-gray-200 pt-16 xl:grid xl:grid-cols-3 xl:gap-x-8">
+                        <div>
+                            <h2 class="{% include 'frontend/styles/pretitle.txt' %}">Genaueres</h2>
+                            <p class="{% include 'frontend/styles/h2.txt' %} mt-2">Mehr über {{ object.first_name }}</p>
+                        </div>
+                        <div class="mt-4 sm:mt-8 md:mt-10 xl:mt-0 xl:col-span-2">
+                            <div class="prose prose-red prose-lg max-w-none text-gray-500">
+                                {{ object.description|safe }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="{% include 'frontend/styles/container.txt' %} py-32 text-7xl">
+        todo: zertifikate
+    </section>
+
+{% endblock main %}
