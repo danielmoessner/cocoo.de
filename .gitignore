@@ -7,3 +7,5 @@ static/dist/js/main.js
 tmp/media/*
 tmp/static/*
 apps/*/migrations/*
+.idea
+__pycache__
