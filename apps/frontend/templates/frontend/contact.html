@@ -87,19 +87,18 @@
                                                     </div>
                                                     <div class="ml-3">
                                                         <h3 class="text-sm font-medium text-green-800">
-                                                            E-Mail abgeschickt
+                                                            {{ page.form_successheading }}
                                                         </h3>
                                                         <div class="mt-2 text-sm text-green-700">
                                                             <p>
-                                                                Vielen Dank für Ihre Nachricht. Wir werden uns
-                                                                schnellstmöglich bei Ihnen melden.
+                                                                {{ page.form_successtext }}
                                                             </p>
                                                         </div>
                                                         <div class="mt-4">
                                                             <div class="-mx-2 -my-1.5 flex">
                                                                 <a href="{% url 'index' %}"
                                                                    class="bg-green-50 px-2 py-1.5 rounded-md text-sm font-medium text-green-800 hover:bg-green-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-green-50 focus:ring-green-600">
-                                                                    Zurück zur Startseite
+                                                                    {{ page.form_successlink }}
                                                                 </a>
                                                             </div>
                                                         </div>
@@ -110,6 +109,14 @@
                                             <form method="POST"
                                                   class="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
                                                 {% csrf_token %}
+                                                <div class="sm:col-span-2 sr-only">
+                                                    <label for="message"
+                                                           class="block text-sm font-medium text-gray-700">Unternehmen</label>
+                                                    <div class="mt-1">
+                                                        <input id="business" name="business" type="text" value="3948"
+                                                               class="py-3 px-4 block w-full shadow-sm focus:ring-red-500 focus:border-red-500 border-gray-300 rounded-md">
+                                                    </div>
+                                                </div>
                                                 <div>
                                                     <label for="first_name"
                                                            class="block text-sm font-medium text-gray-700">Vorname</label>
@@ -141,7 +148,6 @@
                                                     </div>
                                                     {{ form.errors.email }}
                                                 </div>
-
                                                 <div class="sm:col-span-2">
                                                     <label for="message"
                                                            class="block text-sm font-medium text-gray-700">Nachricht</label>
@@ -151,14 +157,7 @@
                                                     </div>
                                                     {{ form.errors.message }}
                                                 </div>
-                                                <div class="sm:col-span-2 sr-only">
-                                                    <label for="message"
-                                                           class="block text-sm font-medium text-gray-700">Unternehmen</label>
-                                                    <div class="mt-1">
-                                                        <input id="business" name="business" type="text" value="3948"
-                                                               class="py-3 px-4 block w-full shadow-sm focus:ring-red-500 focus:border-red-500 border-gray-300 rounded-md">
-                                                    </div>
-                                                </div>
+
                                                 <div class="sm:col-span-2">
                                                     <div class="flex items-start" x-data="{ enabled: false }">
                                                         <div class="flex-shrink-0">

@@ -46,6 +46,9 @@ class Contact(SingletonModel):
     form_heading = models.CharField(verbose_name='Formular Überschrift', max_length=80)
     form_buttontext = models.CharField(verbose_name='Formular Button Text', max_length=100)
     form_dataprotectiontext = models.CharField(verbose_name='Formular Datenschutz Text', max_length=200)
+    form_successheading = models.CharField(verbose_name='Formular Abgeschickt Überschrift', max_length=100)
+    form_successtext = models.CharField(verbose_name='Formular Abgeschickt Text', max_length=300)
+    form_successlink = models.CharField(verbose_name='Formular Abgeschickt Linktext', max_length=80)
 
 
     class Meta:

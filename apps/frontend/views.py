@@ -1,14 +1,13 @@
-from django.conf import settings
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.core.mail import send_mail
-from django.urls import reverse
-from django.views import generic
-
-from apps.customer.models import Testimonial
-from apps.frontend.forms import ContactForm
-from apps.settings.models import Imprint, DataProtection, Contact, General
-from apps.team.models import Member
 from apps.training.models import SeminarGroup, SeminarExecution, SeminarTopic
+from apps.settings.models import Imprint, DataProtection, Contact, General
+from apps.customer.models import Testimonial
+from apps.frontend.forms import ContactForm, SeminarRegistrationForm
+from apps.team.models import Member
+from django.core.mail import send_mail
+from django.views import generic
+from django.urls import reverse
+from django.conf import settings
 
 
 class IndexView(LoginRequiredMixin, generic.TemplateView):
@@ -52,7 +51,8 @@ class ContactView(LoginRequiredMixin, generic.FormView):
         subject = 'Anfrage über das Kontaktformular auf cocoo.de'
         sender = settings.DEFAULT_FROM_EMAIL
         recipient = settings.DEFAULT_FROM_EMAIL
-        send_mail(subject, message, sender, [recipient])
+        if not settings.DEBUG:
+            send_mail(subject, message, sender, [recipient])
         context = self.get_context_data(form=form)
         context['success'] = True
         return self.render_to_response(context)
@@ -88,15 +88,39 @@ class SeminarGroupListView(LoginRequiredMixin, generic.ListView):
         return context
 
 
-class SeminarTopicDetailView(LoginRequiredMixin, generic.DetailView):
+class SeminarTopicDetailView(LoginRequiredMixin, generic.detail.SingleObjectMixin,
+                             generic.FormView):
     model = SeminarTopic
     template_name = 'frontend/seminartopic/detail.html'
+    form_class = SeminarRegistrationForm
+
+    def get_success_url(self):
+        return reverse('seminartopic_detail', args=[self.object.pk])
+
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        return super().get(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        return super().post(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['seminar_groups'] = SeminarGroup.objects.all()
         context['seminar_executions'] = SeminarExecution.objects.filter(topic=self.object)
         return context
+
+    def form_valid(self, form):
+        message = form.get_data()
+        subject = 'Anfrage über das Seminarformular auf cocoo.de'
+        sender = settings.DEFAULT_FROM_EMAIL
+        recipient = settings.DEFAULT_FROM_EMAIL
+        if not settings.DEBUG:
+            send_mail(subject, message, sender, [recipient])
+        context = self.get_context_data(form=form)
+        context['success'] = True
+        return self.render_to_response(context)
 
 
 class MemberDetailView(LoginRequiredMixin, generic.DetailView):
