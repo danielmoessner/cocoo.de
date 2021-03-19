@@ -37,10 +37,10 @@
         </div>
     </section>
 
-    <section class="{% include 'frontend/styles/section.txt' %} bg-red-900">
+    <section class="{% include 'frontend/styles/section.txt' %}">
         <div class="{% include 'frontend/styles/container.txt' %}">
-            <div class="{% include 'frontend/styles/padding.txt' %}">
-                <div class="py-16 sm:py-24">
+            <div class="{% include 'frontend/styles/padding.txt' %} py-12">
+                <div class="bg-red-vivid-500 rounded-lg px-12 py-8 sm:py-12 shadow">
                     <h2 class="{% include 'frontend/styles/h2.txt' with color='text-white' %}">
                         Weitere Informationen
                     </h2>
@@ -115,14 +115,106 @@
                 <div class="py-32">
 
                     <h2 class="{% include 'frontend/styles/h2.txt' %}">Anstehende Seminare</h2>
+                    <div class="bg-white shadow overflow-hidden sm:rounded-md mt-10">
+                        <ul class="divide-y divide-gray-200">
+                            {% for seminar in seminar_executions %}
+                                <li class="flex flex-col px-4 py-4 sm:py-6 sm:px-6">
+                                    <a href="#" class="block">
+                                        <div class="">
+                                            <div class="flex items-center justify-between">
+                                                <p class="text-base font-medium text-red-600 truncate">
+                                                    {{ object.title }}
+                                                </p>
+                                                <div class="ml-2 flex-shrink-0 flex">
+                                                    <p class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full {% if seminar.status == 'OPEN' %}bg-green-100 text-green-800{% else %}bg-red-100 text-red-800{% endif %}">
+                                                        {{ seminar.get_status_display }}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="mt-2 sm:flex sm:justify-between">
+                                                <div class="sm:flex space-x-6">
+                                                    <p class="flex items-center text-sm text-gray-500">
+                                                        <!-- Heroicon name: solid/users -->
+                                                        <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400"
+                                                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                                             fill="currentColor">
+                                                            <path fill-rule="evenodd"
+                                                                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
+                                                                  clip-rule="evenodd"></path>
+                                                        </svg>
+                                                        <time datetime="{{ seminar.start_date|date:'Y-m-d' }}">{{ seminar.start_date }}</time>
+                                                        &nbsp;-&nbsp;
+                                                        <time datetime="{{ seminar.end_date|date:'Y-m-d' }}">{{ seminar.end_date }}</time>
+                                                        &nbsp;&nbsp;
+                                                        {{ seminar.execution_hours }}
+                                                    </p>
+                                                    <p class="flex items-center text-sm text-gray-500">
+                                                        <!-- Heroicon name: solid/location-marker -->
+                                                        <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400"
+                                                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                                             fill="currentColor" aria-hidden="true">
+                                                            <path fill-rule="evenodd"
+                                                                  d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                                                                  clip-rule="evenodd"></path>
+                                                        </svg>
+                                                        {{ seminar.location|default:seminar.get_execution_display }}
+                                                    </p>
+                                                    <p class="flex items-center text-sm text-gray-500">
+                                                        <!-- Heroicon name: solid/location-marker -->
+                                                        <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400"
+                                                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                                             fill="currentColor">
+                                                            <path fill-rule="evenodd"
+                                                                  d="M17.707 9.293a1 1 0 010 1.414l-7 7a1 1 0 01-1.414 0l-7-7A.997.997 0 012 10V5a3 3 0 013-3h5c.256 0 .512.098.707.293l7 7zM5 6a1 1 0 100-2 1 1 0 000 2z"
+                                                                  clip-rule="evenodd"></path>
+                                                        </svg>
+                                                        {{ seminar.price|floatformat:2 }} €
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <div class="flex mt-6 justify-between items-end">
+                                        <div class="">
+                                            {% for member in seminar.members.all %}
+                                                <a href="{% url 'member_detail' member.slug %}"
+                                                   class="flex flex-row items-start">
+                                                    <div class="w-12 flex-none">
+                                                        <div class="w-full aspect-h-1 aspect-w-1">
+                                                            <img class="rounded-full object-cover"
+                                                                 src="{{ member.image.url }}"
+                                                                 alt="{{ member.first_name }} {{ member.last_name }}">
+                                                        </div>
+                                                    </div>
+                                                    <div class="flex-1 pl-3">
+                                                        <h4 class="text-base font-medium text-gray-800 mb-0">
+                                                            {{ member.first_name }} {{ member.last_name }}
+                                                        </h4>
+                                                        <p class="m-0 text-sm">Trainer</p>
+                                                    </div>
+                                                </a>
+                                            {% endfor %}
+                                        </div>
+                                        <div>
+                                            <a href="#anfrage"
+                                               class="block px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                                                Platz / Plätze anfragen
+                                            </a>
+                                        </div>
+                                    </div>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+
                     <ul class="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-2">
                         {% for seminar in seminar_executions %}
-                            <div class="bg-white shadow overflow-hidden sm:rounded-lg">
+                            <li class="bg-white shadow overflow-hidden sm:rounded-lg">
                                 <div class="px-4 py-5 sm:px-6">
                                     <h3 class="text-lg leading-6 font-medium text-gray-900">
                                         {{ object.title }}
                                     </h3>
-                                    <p class="mt-1 max-w-2xl text-sm text-gray-500">
+                                    <p class="mt-1 max-w-2xl text-sm text-gray-500 hidden">
                                         {{ object.short_description }}
                                     </p>
                                 </div>
@@ -130,13 +222,16 @@
                                     <dl class="sm:divide-y sm:divide-gray-200">
                                         <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                             <dt class="text-sm font-medium text-gray-500">
-                                                Von
+                                                Zeiten
                                             </dt>
                                             <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                                {{ seminar.start_date }}
+                                                <div class="mb-1">
+                                                    Vom {{ seminar.start_date }} bis zum {{ seminar.end_date }}
+                                                </div>
+                                                <div>{{ seminar.execution_hours }}</div>
                                             </dd>
                                         </div>
-                                        <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                        <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 xl:hidden">
                                             <dt class="text-sm font-medium text-gray-500">
                                                 Bis
                                             </dt>
@@ -144,7 +239,7 @@
                                                 {{ seminar.end_date }}
                                             </dd>
                                         </div>
-                                        <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                        <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 xl:hidden">
                                             <dt class="text-sm font-medium text-gray-500">
                                                 Durchführungszeiten
                                             </dt>
@@ -216,7 +311,7 @@
                                         </div>
                                     </dl>
                                 </div>
-                            </div>
+                            </li>
                         {% endfor %}
                     </ul>
 

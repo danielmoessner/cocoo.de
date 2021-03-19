@@ -1,4 +1,4 @@
-from apps.settings.models import Imprint, DataProtection
+from apps.settings.models import Imprint, DataProtection, Contact, General
 from tinymce.widgets import TinyMCE
 from django.contrib import admin
 from solo.admin import SingletonModelAdmin
@@ -38,3 +38,5 @@ class DataProtectionModelAdmin(SingletonModelAdmin):
 
 
 admin.site.register(DataProtection, DataProtectionModelAdmin)
+admin.site.register(Contact, SingletonModelAdmin)
+admin.site.register(General, SingletonModelAdmin)

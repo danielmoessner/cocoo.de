@@ -84,25 +84,23 @@
             </div>
             <h4 class="mb-2 leading-tight hidden font-bold text-lg pt-6 text-gray-900">Trainer</h4>
             <div class="grid grid-cols-2 gap-4 mt-6">
-                {% for i in "01"|make_list %}
-                    {% for trainer in execution.members.all %}
-                        <div class="flex">
-                            <div class="h-16 w-16 mr-3">
-                                <div class="aspect-h-1 aspect-w-1">
-                                    <img class="object-cover rounded-full" src="{{ trainer.image.url }}"
-                                         alt="{{ trainer.name }}">
-                                </div>
-                            </div>
-                            <div class="">
-                                <p class="text-gray-600 leading-tight">Trainer</p>
-                                <h4 class="text-gray-900 font-medium mb-2 text-lg">{{ trainer.name }}</h4>
-                                <p class="text-sm text-gray-500 max-w-xl">{{ trainer.short_description }}</p>
+                {% for trainer in execution.members.all %}
+                    <div class="flex">
+                        <div class="h-32 w-32 mr-3 flex-none">
+                            <div class="aspect-h-1 aspect-w-1">
+                                <img class="object-cover rounded-full" src="{{ trainer.image.url }}"
+                                     alt="{{ trainer.name }}">
                             </div>
                         </div>
-                    {% endfor %}
+                        <div class="">
+                            <p class="text-gray-600 leading-tight">Trainer</p>
+                            <h4 class="text-gray-900 font-medium mb-2 text-lg">{{ trainer.name }}</h4>
+                            <p class="text-sm text-gray-500 max-w-xl">{{ trainer.short_description }}</p>
+                        </div>
+                    </div>
                 {% endfor %}
             </div>
-            <div class="self-end ml-auto mt-6">
+            <div class="hidden self-end ml-auto mt-6">
                 <a href="{% url 'seminartopic_detail' execution.topic.slug %}#anstehende-seminare"
                    class="{% include 'frontend/styles/a.txt' %}">
                     Mehr erfahren

@@ -3,8 +3,8 @@
 {% load static %}
 
 {% block main %}
-    {% static 'img/emu-kontakt.jpg' as image %}
-    {% include 'frontend/symbols/header.html' with bg_class="bg-gray-50" svg_class="text-gray-100" title='Kontakt' text='Wir freuen uns auf Ihre Nachricht' primary_button='Zu den Seminaren' secondary_button='E-Mail schreiben' image=image image_alt="Kängaroo Kontakt" %}
+
+    {% include 'frontend/symbols/header.html' with bg_class="bg-gray-50" svg_class="text-gray-100" title=page.header_heading text=page.header_text image=page.header_image.url image_alt="Kängaroo Kontakt" %}
 
 
     <!-- This example requires Tailwind CSS v2.0+ -->
@@ -15,20 +15,20 @@
                     <div class="divide-y-2 divide-gray-200">
                         <div class="lg:grid lg:grid-cols-3 lg:gap-8">
                             <h2 class="text-2xl font-extrabold text-gray-900 sm:text-3xl">
-                                Kontakt
+                                {{ page.contact_heading }}
                             </h2>
                             <div class="mt-8 grid grid-cols-1 gap-12 sm:grid-cols-2 sm:gap-x-8 sm:gap-y-12 lg:mt-0 lg:col-span-2">
                                 <div>
                                     <h3 class="text-lg leading-6 font-medium text-gray-900">
-                                        Seminare
+                                        {{ page.contact_emailphone }}
                                     </h3>
                                     <dl class="mt-2 text-base text-gray-500">
                                         <div>
                                             <dt class="sr-only">
-                                                Email
+                                                E-Mail
                                             </dt>
                                             <dd>
-                                                seminare@cocoo.de
+                                                {{ general.email }}
                                             </dd>
                                         </div>
                                         <div class="mt-1">
@@ -36,30 +36,30 @@
                                                 Telefon
                                             </dt>
                                             <dd>
-                                                089 1234567
+                                                {{ general.phone }}
                                             </dd>
                                         </div>
                                     </dl>
                                 </div>
                                 <div>
                                     <h3 class="text-lg leading-6 font-medium text-gray-900">
-                                        Allgemein
+                                        {{ page.contact_address }}
                                     </h3>
                                     <dl class="mt-2 text-base text-gray-500">
                                         <div>
                                             <dt class="sr-only">
-                                                Email
+                                                Straße
                                             </dt>
                                             <dd>
-                                                info@cocoo.de
+                                                {{ general.address_street }}
                                             </dd>
                                         </div>
                                         <div class="mt-1">
                                             <dt class="sr-only">
-                                                Telefon
+                                                Stadt
                                             </dt>
                                             <dd>
-                                                089 1234567
+                                                {{ general.address_city }}
                                             </dd>
                                         </div>
                                     </dl>
@@ -68,59 +68,129 @@
                         </div>
                         <div class="mt-16 pt-16 lg:grid lg:grid-cols-3 lg:gap-8">
                             <h2 class="text-2xl font-extrabold text-gray-900 sm:text-3xl">
-                                Orte
+                                {{ page.form_heading }}
                             </h2>
-                            <div class="mt-8 grid grid-cols-1 gap-12 sm:grid-cols-2 sm:gap-x-8 sm:gap-y-12 lg:mt-0 lg:col-span-2">
-                                <div>
-                                    <h3 class="text-lg leading-6 font-medium text-gray-900">
-                                        Office München
-                                    </h3>
-                                    <div class="mt-2 text-base text-gray-500">
-                                        <p>
-                                            Alexanderplatz 2
-                                        </p>
-                                        <p class="mt-1">
-                                            80993 München
-                                        </p>
-                                    </div>
-                                </div>
-                                <div>
-                                     <h3 class="text-lg leading-6 font-medium text-gray-900">
-                                        Office München
-                                    </h3>
-                                    <div class="mt-2 text-base text-gray-500">
-                                        <p>
-                                            Alexanderplatz 2
-                                        </p>
-                                        <p class="mt-1">
-                                            80993 München
-                                        </p>
-                                    </div>
-                                </div>
-                                <div>
-                                    <h3 class="text-lg leading-6 font-medium text-gray-900">
-                                        Office München
-                                    </h3>
-                                    <div class="mt-2 text-base text-gray-500">
-                                        <p>
-                                            Alexanderplatz 2
-                                        </p>
-                                        <p class="mt-1">
-                                            80993 München
-                                        </p>
-                                    </div>
-                                </div>
-                                <div>
-                                     <h3 class="text-lg leading-6 font-medium text-gray-900">
-                                        Office München
-                                    </h3>
-                                    <div class="mt-2 text-base text-gray-500">
-                                        <p>
-                                            Alexanderplatz 2
-                                        </p>
-                                        <p class="mt-1">
-                                            80993 München
-                                        </p>
+                            <div class="mt-8 grid grid-cols-1 gap-12 sm:gap-x-8 sm:gap-y-12 lg:mt-0 lg:col-span-2">
+                                <div class="bg-white lg:col-span-3">
+                                    <div class="max-w-lg mx-auto lg:max-w-none">
+                                        {% if success %}
+                                            <div class="rounded-md bg-green-50 p-4">
+                                                <div class="flex">
+                                                    <div class="flex-shrink-0">
+                                                        <svg class="h-5 w-5 text-green-400"
+                                                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                                             fill="currentColor" aria-hidden="true">
+                                                            <path fill-rule="evenodd"
+                                                                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                                                  clip-rule="evenodd"></path>
+                                                        </svg>
+                                                    </div>
+                                                    <div class="ml-3">
+                                                        <h3 class="text-sm font-medium text-green-800">
+                                                            E-Mail abgeschickt
+                                                        </h3>
+                                                        <div class="mt-2 text-sm text-green-700">
+                                                            <p>
+                                                                Vielen Dank für Ihre Nachricht. Wir werden uns
+                                                                schnellstmöglich bei Ihnen melden.
+                                                            </p>
+                                                        </div>
+                                                        <div class="mt-4">
+                                                            <div class="-mx-2 -my-1.5 flex">
+                                                                <a href="{% url 'index' %}"
+                                                                   class="bg-green-50 px-2 py-1.5 rounded-md text-sm font-medium text-green-800 hover:bg-green-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-green-50 focus:ring-green-600">
+                                                                    Zurück zur Startseite
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% else %}
+                                            <form method="POST"
+                                                  class="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
+                                                {% csrf_token %}
+                                                <div>
+                                                    <label for="first_name"
+                                                           class="block text-sm font-medium text-gray-700">Vorname</label>
+                                                    <div class="mt-1">
+                                                        <input value="{{ form.first_name.data|default:'' }}"
+                                                               type="text" name="first_name" id="first_name"
+                                                               autocomplete="given-name"
+                                                               class="py-3 px-4 block w-full shadow-sm focus:ring-red-500 focus:border-red-500 border-gray-300 rounded-md">
+                                                    </div>
+                                                    {{ form.errors.first_name }}
+                                                </div>
+                                                <div>
+                                                    <label for="last_name"
+                                                           class="block text-sm font-medium text-gray-700">Nachname</label>
+                                                    <div class="mt-1">
+                                                        <input value="{{ form.last_name.data|default:'' }}" type="text"
+                                                               name="last_name" id="last_name"
+                                                               autocomplete="family-name"
+                                                               class="py-3 px-4 block w-full shadow-sm focus:ring-red-500 focus:border-red-500 border-gray-300 rounded-md">
+                                                    </div>
+                                                    {{ form.errors.last_name }}
+                                                </div>
+                                                <div class="sm:col-span-2">
+                                                    <label for="email" class="block text-sm font-medium text-gray-700">E-Mail</label>
+                                                    <div class="mt-1">
+                                                        <input value="{{ form.email.data|default:'' }}" id="email"
+                                                               name="email" type="email" autocomplete="email"
+                                                               class="py-3 px-4 block w-full shadow-sm focus:ring-red-500 focus:border-red-500 border-gray-300 rounded-md">
+                                                    </div>
+                                                    {{ form.errors.email }}
+                                                </div>
+
+                                                <div class="sm:col-span-2">
+                                                    <label for="message"
+                                                           class="block text-sm font-medium text-gray-700">Nachricht</label>
+                                                    <div class="mt-1">
+                                                    <textarea id="message" name="message" rows="4"
+                                                              class="py-3 px-4 block w-full shadow-sm focus:ring-red-500 focus:border-red-500 border-gray-300 rounded-md">{{ form.message.data|default:'' }}</textarea>
+                                                    </div>
+                                                    {{ form.errors.message }}
+                                                </div>
+                                                <div class="sm:col-span-2 sr-only">
+                                                    <label for="message"
+                                                           class="block text-sm font-medium text-gray-700">Unternehmen</label>
+                                                    <div class="mt-1">
+                                                        <input id="business" name="business" type="text" value="3948"
+                                                               class="py-3 px-4 block w-full shadow-sm focus:ring-red-500 focus:border-red-500 border-gray-300 rounded-md">
+                                                    </div>
+                                                </div>
+                                                <div class="sm:col-span-2">
+                                                    <div class="flex items-start" x-data="{ enabled: false }">
+                                                        <div class="flex-shrink-0">
+                                                            <button type="button"
+                                                                    @click="enabled = !enabled"
+                                                                    :class="{ 'bg-red-600': enabled, 'bg-gray-200': !enabled }"
+                                                                    class="bg-gray-200 relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+                                                                    aria-pressed="false">
+                                                                <span class="sr-only">Datenschutz</span>
+                                                                <span aria-hidden="true"
+                                                                      :class="{ 'translate-x-5': enabled, 'translate-x-0': !enabled }"
+                                                                      class="translate-x-0 inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200"></span>
+                                                            </button>
+                                                            <input type="hidden" :value="enabled ? 'True' : 'False'"
+                                                                   name="data_protection">
+                                                        </div>
+                                                        <div class="ml-3">
+                                                            <p class="text-base text-gray-500">
+                                                                {{ page.form_dataprotectiontext }}
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    {{ form.errors.data_protection }}
+                                                </div>
+                                                <div class="sm:col-span-2">
+                                                    <button type="submit"
+                                                            class="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                                                        {{ page.form_buttontext }}
+                                                    </button>
+                                                </div>
+                                            </form>
+                                        {% endif %}
                                     </div>
                                 </div>
                             </div>

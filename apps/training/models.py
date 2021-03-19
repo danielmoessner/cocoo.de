@@ -68,7 +68,7 @@ class SeminarExecution(models.Model):
     price = models.DecimalField(max_digits=8, decimal_places=2, verbose_name='Preis')
     execution_hours = models.TextField(verbose_name='Durchführungszeiten')
     STATUS_CHOICES = (
-        ('OPEN', 'Noch Plätze verfügbar'),
+        ('OPEN', 'Plätze verfügbar'),
         ('ALMOST_FULL', 'Wenige Plätze verfügbar'),
         ('FULL', 'Ausgebucht')
     )
