@@ -83,10 +83,10 @@
                 </div>
             </div>
             <h4 class="mb-2 leading-tight hidden font-bold text-lg pt-6 text-gray-900">Trainer</h4>
-            <div class="grid grid-cols-2 gap-4 mt-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-6">
                 {% for trainer in execution.members.all %}
                     <div class="flex">
-                        <div class="h-32 w-32 mr-3 flex-none">
+                        <div class="h-16 w-16 md:h-32 md:w-32 mr-3 flex-none">
                             <div class="aspect-h-1 aspect-w-1">
                                 <img class="object-cover rounded-full" src="{{ trainer.image.url }}"
                                      alt="{{ trainer.name }}">

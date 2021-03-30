@@ -37,12 +37,12 @@
                     <div>
                         {% include 'frontend/symbols/footer_heading.html' with title="Kontakt" %}
                         <address class="text-gray-500 mt-4">
-                            CoCOO GmbH <br>
-                            Straße 123 <br>
-                            12345 Stadt <br>
+                            {{ general.company_name }} <br>
+                            {{ general.address_street }} <br>
+                            {{ general.address_city }} <br>
                             <br>
-                            Telefon: 129294384 <br>
-                            E-Mail: info@cocoo.de
+                            Telefon: {{ general.phone }} <br>
+                            E-Mail: {{ general.email }}
                         </address>
                     </div>
                     <div class="mt-12 md:mt-0 lg:text-right">
@@ -59,7 +59,7 @@
         </div>
         <div class="mt-12 border-t border-gray-200 pt-8">
             <p class="text-base text-gray-400 xl:text-center">
-                &copy; CoCOO GmbH
+                &copy; {{ general.company_name }}
             </p>
         </div>
     </div>

@@ -3,13 +3,26 @@
         <div class="{% include 'frontend/styles/padding.txt' %}">
             <div class="pt-32 pb-32">
                 <div class="px-4 sm:px-6 lg:px-8">
-                    <h2 class="text-2xl tracking-tight font-extrabold text-gray-900 mb-5 sm:text-3xl md:text-4xl lg:mb-10">
+                    <h2 class="text-2xl tracking-tight font-extrabold text-gray-900 mb-5 sm:text-3xl md:pl-14 md:text-4xl lg:mb-10">
                         Unsere Seminare
                     </h2>
                     <div class="">
                         <div class="flex"
                              x-data="slider()"
                              x-init="setup()">
+                            <!-- Previous Arrow -->
+                            <div class="flex-col pl-2 text-gray-600 relative z-30 hidden md:flex">
+                                <button
+                                        class="p-2 focus:outline-none h-full"
+                                        x-on:click="previous()">
+                                    <svg class="w-8 h-8 mb-8" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                         viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                              stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                                        <span class="sr-only">Zurück</span>
+                                    </svg>
+                                </button>
+                            </div>
                             <div class="flex flex-col flex-1">
                                 <div class="flex flex-row relative">
                                     <!-- Slides -->
@@ -33,28 +46,18 @@
                                     </template>
                                 </div>
                             </div>
-                            <!-- Prev/Next Arrows -->
-                            <div class="flex flex-col pt-8 space-y-4 pl-2 text-gray-600 relative z-30">
+                            <!-- Next Arrow -->
+                            <div class="hidden flex-col pl-2 text-gray-600 relative z-30 md:flex">
                                 <button
-                                        class="p-2 focus:outline-none"
+                                        class="p-2 h-full focus:outline-none"
                                         x-on:click="next()">
-                                    <svg class="w-8 h-8" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                    <svg class="w-8 h-8 mb-8" xmlns="http://www.w3.org/2000/svg" fill="none"
                                          viewBox="0 0 24 24"
                                          stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round"
                                               stroke-width="2" d="M9 5l7 7-7 7"></path>
                                     </svg>
                                     <span class="sr-only">Weiter</span>
-                                </button>
-                                <button
-                                        class="p-2 focus:outline-none"
-                                        x-on:click="previous()">
-                                    <svg class="w-8 h-8" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                         viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                              stroke-width="2" d="M15 19l-7-7 7-7"></path>
-                                        <span class="sr-only">Zurück</span>
-                                    </svg>
                                 </button>
                             </div>
                         </div>
@@ -94,8 +97,8 @@
                 }
             },
             set(slideNumber) {
-              this.previousSlide = this.activeSlide;
-              this.activeSlide = slideNumber;
+                this.previousSlide = this.activeSlide;
+                this.activeSlide = slideNumber;
             },
             transitions(state) {
                 const rightToLeft = this.activeSlide > this.previousSlide;

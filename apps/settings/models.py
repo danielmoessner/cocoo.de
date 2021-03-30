@@ -24,6 +24,7 @@ class DataProtection(SingletonModel):
 
 
 class General(SingletonModel):
+    company_name = models.CharField(verbose_name='Unternehmensname', max_length=100, default='CoCoo GmbH')
     phone = models.CharField(verbose_name='Telefon', max_length=100)
     email = models.CharField(verbose_name='E-Mail', max_length=100)
     address_street = models.CharField(verbose_name='Adresse Straße', max_length=100)

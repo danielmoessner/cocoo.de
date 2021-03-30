@@ -140,7 +140,9 @@ TINYMCE_DEFAULT_CONFIG = {
     "toolbar": "undo redo | formatselect | "
                "bold italic underline | forecolor backcolor | alignleft aligncenter "
                "alignright alignjustify | bullist numlist outdent indent",
-    "block_formats": 'Paragraph=p; Überschrift=h3; Unterüberschrift=h4; Vorformatiert=pre'
+    "block_formats": 'Paragraph=p; Überschrift=h3; Unterüberschrift=h4; Vorformatiert=pre',
+    "invalid_styles": 'font-family font-size',
+    "valid_classes": "",
 }
 
 # E-Mail

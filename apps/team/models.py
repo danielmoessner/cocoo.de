@@ -44,3 +44,17 @@ class Certification(models.Model):
 
     def __str__(self):
         return '{}'.format(self.name)
+
+
+class Book(models.Model):
+    image = models.ImageField(verbose_name='Bild')
+    title = models.CharField(max_length=100, verbose_name='Titel')
+    description = models.TextField(verbose_name='Beschreibung')
+
+    class Meta:
+        ordering = ['title']
+        verbose_name = 'Buch'
+        verbose_name_plural = 'Bücher'
+
+    def __str__(self):
+        return '{}'.format(self.title)

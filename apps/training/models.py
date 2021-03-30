@@ -33,7 +33,7 @@ class SeminarTopic(models.Model):
                                       'cocoo.de/seminarthema/certified-less-practitioner/.')
     short_description = models.TextField(verbose_name='Kurzbeschreibung')
     description = HTMLField(verbose_name='Beschreibung')
-    image = models.ImageField(verbose_name='Bild', upload_to='seminartopic/')
+    image = models.ImageField(verbose_name='Bild', upload_to='seminartopic/', blank=True, null=True)
     certificate = models.TextField(verbose_name='Zertifikatsaussage')
     languages = models.TextField(verbose_name='Sprachen')
     executions = models.TextField(verbose_name='Durchführungen')
@@ -65,7 +65,7 @@ class SeminarExecution(models.Model):
     )
     execution = models.CharField(choices=execution_choices, verbose_name='Durchführung', max_length=40)
     language = models.CharField(max_length=50, verbose_name='Sprache')
-    price = models.DecimalField(max_digits=8, decimal_places=2, verbose_name='Preis')
+    price = models.DecimalField(max_digits=8, decimal_places=2, verbose_name='Preis', null=True, blank=True)
     execution_hours = models.TextField(verbose_name='Durchführungszeiten')
     STATUS_CHOICES = (
         ('OPEN', 'Plätze verfügbar'),
@@ -74,6 +74,7 @@ class SeminarExecution(models.Model):
     )
     status = models.CharField(choices=STATUS_CHOICES, max_length=50, verbose_name='Buchungsstatus')
     members = models.ManyToManyField(Member, verbose_name='Teammitglieder', blank=True)
+    show_on_index = models.BooleanField(verbose_name='Auf der Startseite im Slider anzeigen', default=True)
     #
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
