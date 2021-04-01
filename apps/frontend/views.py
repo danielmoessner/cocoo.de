@@ -1,9 +1,9 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from apps.training.models import SeminarGroup, SeminarExecution, SeminarTopic
-from apps.settings.models import Imprint, DataProtection, Contact, General
+from apps.settings.models import Imprint, DataProtection, Contact, General, Team, Index, Seminars, Coaching
 from apps.customer.models import Testimonial
 from apps.frontend.forms import ContactForm, SeminarRegistrationForm
-from apps.team.models import Member
+from apps.team.models import Member, Book
 from django.core.mail import send_mail
 from django.views import generic
 from django.urls import reverse
@@ -14,6 +14,7 @@ class AllContextMixin(generic.base.ContextMixin):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['general'] = General.get_solo()
+        context['seminar_groups'] = SeminarGroup.objects.all()
         return context
 
 
@@ -26,6 +27,7 @@ class IndexView(LoginRequiredMixin, AllContextMixin, generic.TemplateView):
         context['seminar_executions'] = SeminarExecution.objects.filter(show_on_index=True)
         context['members'] = Member.objects.all()
         context['testimonial'] = Testimonial.objects.order_by('?').first()
+        context['page'] = Index.get_solo()
         return context
 
 
@@ -36,6 +38,8 @@ class MemberListView(LoginRequiredMixin, AllContextMixin, generic.ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['seminar_groups'] = SeminarGroup.objects.all()
+        context['books'] = Book.objects.all()
+        context['page'] = Team.get_solo()
         return context
 
 
@@ -73,7 +77,7 @@ class ImprintView(LoginRequiredMixin, AllContextMixin, generic.TemplateView):
         return context
 
 
-class DateProtectionView(LoginRequiredMixin, AllContextMixin, generic.TemplateView):
+class DataProtectionView(LoginRequiredMixin, AllContextMixin, generic.TemplateView):
     template_name = 'frontend/data_protection.html'
 
     def get_context_data(self, **kwargs):
@@ -90,6 +94,7 @@ class SeminarGroupListView(LoginRequiredMixin, AllContextMixin, generic.ListView
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['seminar_groups'] = SeminarGroup.objects.all()
+        context['page'] = Seminars.get_solo()
         return context
 
 
@@ -112,7 +117,7 @@ class SeminarTopicDetailView(LoginRequiredMixin, AllContextMixin, generic.detail
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['seminar_groups'] = SeminarGroup.objects.all()
+
         context['seminar_executions'] = SeminarExecution.objects.filter(topic=self.object)
         return context
 
@@ -134,4 +139,13 @@ class MemberDetailView(LoginRequiredMixin, AllContextMixin, generic.DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['seminar_groups'] = SeminarGroup.objects.all()
+        return context
+
+
+class CoachingView(LoginRequiredMixin, AllContextMixin, generic.TemplateView):
+    template_name = 'frontend/coaching.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['page'] = Coaching.get_solo()
         return context

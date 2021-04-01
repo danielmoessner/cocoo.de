@@ -139,10 +139,12 @@ TINYMCE_DEFAULT_CONFIG = {
                "code,help,wordcount",
     "toolbar": "undo redo | formatselect | "
                "bold italic underline | forecolor backcolor | alignleft aligncenter "
-               "alignright alignjustify | bullist numlist outdent indent",
+               "alignright alignjustify | bullist numlist outdent indent | link",
     "block_formats": 'Paragraph=p; Überschrift=h3; Unterüberschrift=h4; Vorformatiert=pre',
-    "invalid_styles": 'font-family font-size',
+    "invalid_styles": 'font-family font-size font-weight',
     "valid_classes": "",
+    "advlist_bullet_styles": "default",
+    "advlist_number_styles": "default"
 }
 
 # E-Mail
