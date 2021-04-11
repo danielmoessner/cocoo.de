@@ -31,14 +31,14 @@ class Member(models.Model):
 class Certification(models.Model):
     name = models.CharField(verbose_name='Name', max_length=100)
     image = models.ImageField(verbose_name='Bild', upload_to='certification/', blank=True)
-    member = models.ForeignKey(Member, verbose_name='Teammitglied', on_delete=models.CASCADE)
+    members = models.ManyToManyField(Member, verbose_name='Teammitglieder', related_name='certificates')
     #
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     draft = models.BooleanField(default=True, verbose_name="Entwurf")
 
     class Meta:
-        ordering = ['member']
+        ordering = ['name']
         verbose_name = 'Zertifikat'
         verbose_name_plural = 'Zertifikate'
 

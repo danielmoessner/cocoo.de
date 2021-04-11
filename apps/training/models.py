@@ -81,10 +81,10 @@ class SeminarExecution(models.Model):
     draft = models.BooleanField(default=True, verbose_name="Entwurf")
 
     class Meta:
-        ordering = ['start_date']
+        ordering = ['-start_date']
         verbose_name = 'Seminardurchführung'
         verbose_name_plural = 'Seminardurchführungen'
 
     def __str__(self):
-        return '{}: {} - {}'.format(self.topic.title, self.start_date.strftime('%d.%m.%Y'),
-                                    self.end_date.strftime('%d.%m.%Y'))
+        return '{} - {}: {}'.format(self.start_date.strftime('%d.%m.%Y'),
+                                  self.end_date.strftime('%d.%m.%Y'), self.topic.title)

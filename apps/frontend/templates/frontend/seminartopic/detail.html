@@ -19,7 +19,8 @@
                             </p>
                         </div>
                         {% if object.image %}
-                            <img class="w-40 mb-6 md:mb-0" src="{{ object.image.url|resize:'160x160' }}" alt="{{ object.title }}">
+                            <img class="w-40 mb-6 md:mb-0" src="{{ object.image.url|resize:'160x160' }}"
+                                 alt="{{ object.title }}">
                         {% endif %}
                     </div>
 
@@ -157,7 +158,11 @@
                                                       d="M17.707 9.293a1 1 0 010 1.414l-7 7a1 1 0 01-1.414 0l-7-7A.997.997 0 012 10V5a3 3 0 013-3h5c.256 0 .512.098.707.293l7 7zM5 6a1 1 0 100-2 1 1 0 000 2z"
                                                       clip-rule="evenodd"></path>
                                             </svg>
-                                            {{ seminar.price|floatformat:2 }} €
+                                            {% if seminar.price %}
+                                                {{ seminar.price|floatformat:2|add:' €' }}
+                                            {% else %}
+                                                Preis: Auf Anfrage
+                                            {% endif %}
                                         </p>
                                         <p class="flex items-center text-sm text-gray-500">
                                             <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400"
@@ -332,7 +337,8 @@
         <div class="{% include 'frontend/styles/container.txt' %}">
             <div class="{% include 'frontend/styles/padding.txt' %}">
                 <div class="pt-24 pb-32">
-                    <svg class="hidden absolute left-full transform -translate-x-1/2 sm:block" width="404" height="404" fill="none"
+                    <svg class="hidden absolute left-full transform -translate-x-1/2 sm:block" width="404" height="404"
+                         fill="none"
                          viewBox="0 0 404 404" aria-hidden="true">
                         <defs>
                             <pattern id="85737c0e-0916-41d7-917f-596dc7edfa27" x="0" y="0" width="20" height="20"
@@ -342,7 +348,8 @@
                         </defs>
                         <rect width="404" height="404" fill="url(#85737c0e-0916-41d7-917f-596dc7edfa27)"></rect>
                     </svg>
-                    <svg class="hidden absolute right-full bottom-0 transform translate-x-1/2 sm:block" width="404" height="404"
+                    <svg class="hidden absolute right-full bottom-0 transform translate-x-1/2 sm:block" width="404"
+                         height="404"
                          fill="none"
                          viewBox="0 0 404 404" aria-hidden="true">
                         <defs>
@@ -415,10 +422,10 @@
                                     </div>
                                     <div class="sm:col-span-2">
                                         <label for="seminar" class="block text-sm font-medium text-gray-700">
-                                            Seminar
+                                            Seminar*
                                         </label>
                                         <div class="mt-1">
-                                            <select id="seminar" name="seminar"
+                                            <select id="seminar" name="seminar" required
                                                     class="py-3 px-4 pr-10 block w-full text-base border-gray-300 focus:ring-red-500 focus:border-red-500 rounded-md">
                                                 <option>-------</option>
                                                 {% for seminar in seminar_executions %}
@@ -432,7 +439,7 @@
                                     </div>
                                     <div>
                                         <label for="first_name" class="block text-sm font-medium text-gray-700">
-                                            Vorname
+                                            Vorname*
                                         </label>
                                         <div class="mt-1">
                                             <input value="{{ form.data.first_name }}"
@@ -445,7 +452,7 @@
                                     </div>
                                     <div>
                                         <label for="last_name" class="block text-sm font-medium text-gray-700">
-                                            Nachname
+                                            Nachname*
                                         </label>
                                         <div class="mt-1">
                                             <input value="{{ form.data.last_name }}"
@@ -458,7 +465,7 @@
                                     </div>
                                     <div class="sm:col-span-2">
                                         <label for="email"
-                                               class="block text-sm font-medium text-gray-700">E-Mail</label>
+                                               class="block text-sm font-medium text-gray-700">E-Mail*</label>
                                         <div class="mt-1">
                                             <input value="{{ form.data.email }}"
                                                    id="email" name="email" type="email" autocomplete="email"
@@ -469,7 +476,7 @@
                                     </div>
                                     <div class="sm:col-span-2">
                                         <label for="phone" class="block text-sm font-medium text-gray-700">
-                                            Telefonnummer
+                                            Telefonnummer*
                                         </label>
                                         <div class="mt-1">
                                             <input type="text" name="phone" id="phone" autocomplete="tel"
@@ -482,7 +489,7 @@
                                     </div>
                                     <div class="sm:col-span-2">
                                         <label for="amount_persons" class="block text-sm font-medium text-gray-700">
-                                            Anzahl Personen
+                                            Anzahl Personen*
                                         </label>
                                         <div class="mt-1">
                                             <input value="{{ form.data.amount_persons }}"
@@ -520,6 +527,9 @@
                                             </div>
                                         </div>
                                         {{ form.errors.data_protection }}
+                                    </div>
+                                    <div class="sm:col-span-2">
+                                        <p class="text-sm text-gray-700 mb-3">Mit * gekennzeichnete Felder sind Pflichtfelder.</p>
                                     </div>
                                     <div class="sm:col-span-2">
                                         <button type="submit"

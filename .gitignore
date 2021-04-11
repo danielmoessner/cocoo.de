@@ -9,3 +9,4 @@ tmp/static/*
 apps/*/migrations/*
 .idea
 __pycache__
+tmp/backup/*

@@ -34,16 +34,24 @@
                         <div class="mt-4 sm:mt-8 md:mt-10 xl:mt-0 xl:col-span-2">
                             <div class="prose prose-red prose-lg max-w-none text-gray-500">
                                 {{ object.description|safe }}
+                                <h2>Zertifikate</h2>
+                                <div class="flex flex-wrap -mx-2">
+                                    {% for certificate in object.certificates.all %}
+                                        <div class="p-2">
+                                            <img class="max-w-full h-auto"
+                                                 style="margin: 0;"
+                                                 src="{{ certificate.image.url|resize:'200x800' }}"
+                                                 alt="{{ certificate.name }}"
+                                            />
+                                        </div>
+                                    {% endfor %}
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-
-    <section class="{% include 'frontend/styles/container.txt' %} py-32 text-7xl">
-        todo: zertifikate
     </section>
 
 {% endblock main %}
