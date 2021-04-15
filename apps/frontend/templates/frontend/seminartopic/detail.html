@@ -8,29 +8,29 @@
     <section class="{% include 'frontend/styles/section.txt' %}">
         <div class="{% include 'frontend/styles/container.txt' %}">
             <div class="{% include 'frontend/styles/padding.txt' %}">
-                <div class="py-16 sm:py-24 border-t-2 border-gray-100">
+                <div class="py-16 sm:py-24">
                     <div class="pb-16 flex flex-col-reverse items-start md:flex-row md:items-center md:justify-between">
                         <div class="w-full md:w-8/12">
-                            <h1 class="text-4xl font-extrabold sm:text-5xl sm:tracking-tight">
-                                <span class="text-gray-900">{{ object.title }}</span>
+                            <h1 data-aos="fade-up" data-aos-delay="0" class="text-4xl font-extrabold sm:text-5xl sm:tracking-tight">
+                                <span class="text-red-400">{{ object.title }}</span>
                             </h1>
-                            <p class="mt-5 text-xl text-gray-500">
+                            <p data-aos='fade-up' data-aos-delay="150" class="mt-5 text-xl text-gray-500">
                                 {{ object.short_description }}
                             </p>
                         </div>
                         {% if object.image %}
-                            <img class="w-40 mb-6 md:mb-0" src="{{ object.image.url|resize:'160x160' }}"
+                            <img data-aos="fade-up" data-aos-delay="300" class="w-40 mb-6 md:mb-0" src="{{ object.image.url|resize:'160x160' }}"
                                  alt="{{ object.title }}">
                         {% endif %}
                     </div>
 
                     <div class="border-t border-gray-200 pt-16 xl:grid xl:grid-cols-3 xl:gap-x-8">
-                        <div>
-                            <h2 class="{% include 'frontend/styles/pretitle.txt' %}">Beschreibung</h2>
-                            <p class="{% include 'frontend/styles/h2.txt' %} mt-2">Worum geht es genau?</p>
+                        <div data-aos="fade-up">
+                            <h2 class="{% include 'frontend/styles/pretitle.txt' with color='text-gray-500' %}">Beschreibung</h2>
+                            <p class="{% include 'frontend/styles/h2.txt' %} text-red-400 mt-2">Worum geht es genau?</p>
                         </div>
                         <div class="mt-4 sm:mt-8 md:mt-10 xl:mt-0 xl:col-span-2">
-                            <div class="prose prose-red prose-lg max-w-none text-gray-500">
+                            <div data-aos-delay="150" data-aos="fade-up" class="prose prose-red prose-lg max-w-none text-gray-500">
                                 {{ object.description|safe }}
                             </div>
                         </div>
@@ -40,36 +40,36 @@
         </div>
     </section>
 
-    <section class="{% include 'frontend/styles/section.txt' %}">
+    <section data-aos="fade-up" class="{% include 'frontend/styles/section.txt' %}">
         <div class="{% include 'frontend/styles/container.txt' %}">
             <div class="{% include 'frontend/styles/padding.txt' %} py-12">
-                <div class="bg-red-vivid-500 rounded-lg px-12 py-8 sm:py-12 shadow">
-                    <h2 class="{% include 'frontend/styles/h2.txt' with color='text-white' %}">
+                <div class="bg-red-400 rounded-2xl px-12 py-8 sm:py-12 shadow">
+                    <h2 class="{% include 'frontend/styles/h2.txt' with color='text-red-050' %}">
                         Weitere Informationen
                     </h2>
-                    <div class="mt-6 border-t border-red-400 border-opacity-25 pt-10">
+                    <div class="mt-6 border-t border-red-100 border-opacity-25 pt-10">
                         <dl class="space-y-10 md:space-y-0 md:grid md:grid-cols-2  md:grid-rows-2 md:gap-x-8 md:gap-y-12">
                             <div>
-                                <dt class="text-lg leading-6 font-medium text-white">
+                                <dt class="text-lg leading-6 font-medium text-red-050">
                                     Gibt es ein Zertifikat?
                                 </dt>
-                                <dd class="mt-2 text-base text-red-100">
+                                <dd class="mt-2 text-base text-red-050">
                                     {{ object.certificate }}
                                 </dd>
                             </div>
                             <div>
-                                <dt class="text-lg leading-6 font-medium text-white">
+                                <dt class="text-lg leading-6 font-medium text-red-050">
                                     In welchen Sprachen wird das Thema angeboten?
                                 </dt>
-                                <dd class="mt-2 text-base text-red-100">
+                                <dd class="mt-2 text-base text-red-050">
                                     {{ object.languages }}
                                 </dd>
                             </div>
                             <div>
-                                <dt class="text-lg leading-6 font-medium text-white">
+                                <dt class="text-lg leading-6 font-medium text-red-050">
                                     Wo findet das Thema statt?
                                 </dt>
-                                <dd class="mt-2 text-base text-red-100">
+                                <dd class="mt-2 text-base text-red-050">
                                     {{ object.executions }}
                                 </dd>
                             </div>
@@ -80,100 +80,29 @@
         </div>
     </section>
 
-    {#    <section class="{% include 'frontend/styles/section.txt' %}">#}
-    {#        <div class="{% include 'frontend/styles/container.txt' %}">#}
-    {#            <div class="{% include 'frontend/styles/padding.txt' %}">#}
-    {#                <div class="py-12 lg:py-24">#}
-    {#                    <div class="grid grid-cols-1 gap-12 lg:grid-cols-3 lg:gap-8">#}
-    {#                        <div>#}
-    {#                            <h2 class="{% include 'frontend/styles/pretitle.txt' %}">Trainer</h2>#}
-    {#                            <p class="{% include 'frontend/styles/h2.txt' %} mt-2">Wer leitet dieses Thema?</p>#}
-    {#                        </div>#}
-    {#                        <div class="lg:col-span-2">#}
-    {#                            <ul class="space-y-12 sm:grid sm:gap-12 sm:space-y-0 lg:gap-x-8">#}
-    {#                                {% for trainer in object.trainers.all %}#}
-    {#                                    <li class="max-xl">#}
-    {#                                        <div class="flex items-center space-x-4 lg:space-x-6">#}
-    {#                                            <img class="w-24 h-24 rounded-full lg:w-32 lg:h-32"#}
-    {#                                                 src="{{ trainer.image.url|resize:"180x180" }}"#}
-    {#                                                 alt="{{ trainer.first_name }} {{ trainer.last_name }}">#}
-    {#                                            <div class="font-medium text-lg leading-6 space-y-1">#}
-    {#                                                <h3>{{ trainer.first_name }} {{ trainer.last_name }}</h3>#}
-    {#                                                <p class="text-gray-800 text-sm font-light">{{ trainer.short_description }}</p>#}
-    {#                                            </div>#}
-    {#                                        </div>#}
-    {#                                    </li>#}
-    {#                                {% endfor %}#}
-    {#                            </ul>#}
-    {#                        </div>#}
-    {#                    </div>#}
-    {#                </div>#}
-    {#            </div>#}
-    {#        </div>#}
-    {#    </section>#}
-
     <section class="{% include 'frontend/styles/section.txt' %} bg-gray-100" id="anstehende-seminare">
         <div class="{% include 'frontend/styles/container.txt' %}">
             <div class="{% include 'frontend/styles/padding.txt' %}">
                 <div class="py-32">
-
-                    <h2 class="{% include 'frontend/styles/h2.txt' %}">Anstehende Seminare</h2>
-                    <div class="bg-white shadow overflow-hidden sm:rounded-md mt-10">
-                        <ul class="divide-y divide-gray-200">
+                    <h2 class="{% include 'frontend/styles/h2.txt' %} text-purple-500">Anstehende Seminare</h2>
+                    {#                    <div class="bg-white shadow overflow-hidden sm:rounded-md mt-10">#}
+                    {#                        <ul class="divide-y divide-gray-200">#}
+                    <div class="mt-10">
+                        <ul class="space-y-5">
                             {% for seminar in seminar_executions %}
-                                <li class="flex flex-col px-4 py-4 sm:pb-5 sm:pt-3 sm:px-5">
+                                {#                                <li class="flex flex-col px-4 py-4 sm:pb-5 sm:pt-3 sm:px-5">#}
+                                <li data-aos="fade-up" class="rounded-2xl bg-purple-400 flex flex-col px-4 py-4 sm:pb-4 sm:pt-4 sm:px-5">
                                     <div class="flex flex-col space-y-2 lg:space-x-6 lg:space-y-0 lg:flex-row lg:flex-wrap-none">
-                                        <p class="flex items-center flex-wrap text-sm text-gray-500">
-                                            <!-- Heroicon name: solid/users -->
-                                            <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400"
-                                                 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
-                                                 fill="currentColor">
-                                                <path fill-rule="evenodd"
-                                                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
-                                                      clip-rule="evenodd"></path>
-                                            </svg>
-                                            <time datetime="{{ seminar.start_date|date:'Y-m-d' }}">{{ seminar.start_date }}</time>
-                                            &nbsp;-&nbsp;
-                                            <time datetime="{{ seminar.end_date|date:'Y-m-d' }}">{{ seminar.end_date }}</time>
-                                            &nbsp;&nbsp;
-                                            {{ seminar.execution_hours }}
-                                        </p>
-                                        <p class="flex items-center text-sm text-gray-500">
-                                            <!-- Heroicon name: solid/location-marker -->
-                                            <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400"
-                                                 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
-                                                 fill="currentColor" aria-hidden="true">
-                                                <path fill-rule="evenodd"
-                                                      d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
-                                                      clip-rule="evenodd"></path>
-                                            </svg>
-                                            {{ seminar.location|default:seminar.get_execution_display }}
-                                        </p>
-                                        <p class="flex items-center text-sm text-gray-500">
-                                            <!-- Heroicon name: solid/location-marker -->
-                                            <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400"
-                                                 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
-                                                 fill="currentColor">
-                                                <path fill-rule="evenodd"
-                                                      d="M17.707 9.293a1 1 0 010 1.414l-7 7a1 1 0 01-1.414 0l-7-7A.997.997 0 012 10V5a3 3 0 013-3h5c.256 0 .512.098.707.293l7 7zM5 6a1 1 0 100-2 1 1 0 000 2z"
-                                                      clip-rule="evenodd"></path>
-                                            </svg>
-                                            {% if seminar.price %}
-                                                {{ seminar.price|floatformat:2|add:' €' }}
-                                            {% else %}
-                                                Preis: Auf Anfrage
-                                            {% endif %}
-                                        </p>
-                                        <p class="flex items-center text-sm text-gray-500">
-                                            <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400"
-                                                 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
-                                                 fill="currentColor">
-                                                <path fill-rule="evenodd"
-                                                      d="M4.083 9h1.946c.089-1.546.383-2.97.837-4.118A6.004 6.004 0 004.083 9zM10 2a8 8 0 100 16 8 8 0 000-16zm0 2c-.076 0-.232.032-.465.262-.238.234-.497.623-.737 1.182-.389.907-.673 2.142-.766 3.556h3.936c-.093-1.414-.377-2.649-.766-3.556-.24-.56-.5-.948-.737-1.182C10.232 4.032 10.076 4 10 4zm3.971 5c-.089-1.546-.383-2.97-.837-4.118A6.004 6.004 0 0115.917 9h-1.946zm-2.003 2H8.032c.093 1.414.377 2.649.766 3.556.24.56.5.948.737 1.182.233.23.389.262.465.262.076 0 .232-.032.465-.262.238-.234.498-.623.737-1.182.389-.907.673-2.142.766-3.556zm1.166 4.118c.454-1.147.748-2.572.837-4.118h1.946a6.004 6.004 0 01-2.783 4.118zm-6.268 0C6.412 13.97 6.118 12.546 6.03 11H4.083a6.004 6.004 0 002.783 4.118z"
-                                                      clip-rule="evenodd"></path>
-                                            </svg>
-                                            {{ seminar.language }}
-                                        </p>
+                                        {% with start_date=seminar.start_date|date:"d.m.Y" end_date=seminar.end_date|date:"d.m.Y" %}
+                                            {% include 'frontend/symbols/svg_info.html' with svg='frontend/symbols/svg/solid-users.svg' info=start_date|add:" - "|add:end_date|add:"&nbsp;&nbsp;"|add:seminar.execution_hours %}
+                                        {% endwith %}
+                                        {% include 'frontend/symbols/svg_info.html' with svg='frontend/symbols/svg/solid-location-marker.svg' info=seminar.location|default:seminar.get_execution_display %}
+                                        {% if seminar.price %}
+                                            {% include 'frontend/symbols/svg_info.html' with svg='frontend/symbols/svg/solid-tag.svg' info=seminar.price|floatformat:2|add:' €' %}
+                                        {% else %}
+                                            {% include 'frontend/symbols/svg_info.html' with svg='frontend/symbols/svg/solid-tag.svg' info='Preis auf Anfrage' %}
+                                        {% endif %}
+                                        {% include 'frontend/symbols/svg_info.html' with svg='frontend/symbols/svg/solid-globe-alt.svg' info=seminar.language %}
                                     </div>
                                     <div class="flex flex-col mt-6 justify-between md:flex-row md:items-end">
                                         <div class="flex flex-col space-y-4 md:space-x-10 md:space-y-0 md:flex-row">
@@ -188,24 +117,21 @@
                                                         </div>
                                                     </div>
                                                     <div class="flex-1 pl-3">
-                                                        <h4 class="text-base font-medium text-gray-800 mb-0">
+                                                        <h4 class="text-base font-medium text-purple-050 mb-0">
                                                             {{ member.first_name }} {{ member.last_name }}
                                                         </h4>
-                                                        <p class="m-0 text-sm">Trainer</p>
+                                                        <p class="m-0 text-sm text-purple-100">Trainer</p>
                                                     </div>
                                                 </a>
                                             {% endfor %}
                                         </div>
                                         <div class="self-end mt-4 md:mt-0">
                                             {% if seminar.status == 'FULL' %}
-                                                <p class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+                                                <p class="px-2 inline-flex text-xs leading-5 font-semibold rounded-lg bg-red-100 text-red-800">
                                                     {{ seminar.get_status_display }}
                                                 </p>
                                             {% else %}
-                                                <a href="#anfrage"
-                                                   class="block px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
-                                                    Platz / Plätze anfragen
-                                                </a>
+                                                {% include 'frontend/symbols/button.html' with href='#anfrage' text='Platz / Plätze anfragen' size_styles='px-4 py-2 text-sm' color_styles='bg-red-100 text-red-800 ring-red-200 ring-offset-purple-500 hover:bg-red-200' %}
                                             {% endif %}
                                         </div>
                                     </div>
@@ -213,119 +139,6 @@
                             {% endfor %}
                         </ul>
                     </div>
-
-                    <div class="hidden">
-                        <ul class="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-2">
-                            {% for seminar in seminar_executions %}
-                                <li class="bg-white shadow overflow-hidden sm:rounded-lg">
-                                    <div class="px-4 py-5 sm:px-6">
-                                        <h3 class="text-lg leading-6 font-medium text-gray-900">
-                                            {{ object.title }}
-                                        </h3>
-                                        <p class="mt-1 max-w-2xl text-sm text-gray-500 hidden">
-                                            {{ object.short_description }}
-                                        </p>
-                                    </div>
-                                    <div class="border-t border-gray-200 px-4 py-5 sm:p-0">
-                                        <dl class="sm:divide-y sm:divide-gray-200">
-                                            <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                                <dt class="text-sm font-medium text-gray-500">
-                                                    Zeiten
-                                                </dt>
-                                                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                                    <div class="mb-1">
-                                                        Vom {{ seminar.start_date }} bis zum {{ seminar.end_date }}
-                                                    </div>
-                                                    <div>{{ seminar.execution_hours }}</div>
-                                                </dd>
-                                            </div>
-                                            <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 xl:hidden">
-                                                <dt class="text-sm font-medium text-gray-500">
-                                                    Bis
-                                                </dt>
-                                                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                                    {{ seminar.end_date }}
-                                                </dd>
-                                            </div>
-                                            <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 xl:hidden">
-                                                <dt class="text-sm font-medium text-gray-500">
-                                                    Durchführungszeiten
-                                                </dt>
-                                                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                                    {{ seminar.execution_hours }}
-                                                </dd>
-                                            </div>
-                                            <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                                <dt class="text-sm font-medium text-gray-500">
-                                                    Sprache
-                                                </dt>
-                                                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                                    {{ seminar.language }}
-                                                </dd>
-                                            </div>
-                                            <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                                <dt class="text-sm font-medium text-gray-500">
-                                                    Ort
-                                                </dt>
-                                                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                                    {{ seminar.location|default:seminar.get_execution_display }}
-                                                </dd>
-                                            </div>
-                                            <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                                <dt class="text-sm font-medium text-gray-500">
-                                                    Trainer
-                                                </dt>
-                                                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                                    {% for member in seminar.members.all %}
-                                                        <div class="flex flex-row items-start">
-                                                            <div class="w-16 mr-3">
-                                                                <div class="w-full aspect-h-1 aspect-w-1 mb-2">
-                                                                    <img class="rounded-full object-cover"
-                                                                         src="{{ member.image.url }}"
-                                                                         alt="{{ member.first_name }} {{ member.last_name }}">
-                                                                </div>
-                                                            </div>
-                                                            <div class="flex-1">
-                                                                <h4 class="text-base tracking-tight font-extrabold text-gray-900 mb-1">
-                                                                    {{ member.first_name }} {{ member.last_name }}
-                                                                </h4>
-                                                                <p>{{ member.short_description }}</p>
-                                                            </div>
-                                                        </div>
-                                                    {% endfor %}
-                                                </dd>
-                                            </div>
-                                            <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                                <dt class="text-sm font-medium text-gray-500">
-                                                    Preis
-                                                </dt>
-                                                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                                    {{ seminar.price|floatformat:2 }} €
-                                                </dd>
-                                            </div>
-                                            <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                                <dt class="text-sm font-medium text-gray-500 sr-only">
-                                                    Preis
-                                                </dt>
-                                                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-3 text-right">
-                                                    {% if seminar.status == 'FULL' %}
-                                                        <p class="font-medium">Ausgebucht</p>
-                                                    {% else %}
-                                                        <a class="{% include 'frontend/styles/a.txt' %}"
-                                                           href="#anfrage">
-                                                            Platz / Plätze anfragen
-                                                        </a>
-                                                    {% endif %}
-                                                </dd>
-                                            </div>
-                                        </dl>
-                                    </div>
-                                </li>
-                            {% endfor %}
-                        </ul>
-                    </div>
-
-
                 </div>
             </div>
         </div>
@@ -529,13 +342,11 @@
                                         {{ form.errors.data_protection }}
                                     </div>
                                     <div class="sm:col-span-2">
-                                        <p class="text-sm text-gray-700 mb-3">Mit * gekennzeichnete Felder sind Pflichtfelder.</p>
+                                        <p class="text-sm text-gray-700 mb-3">Mit * gekennzeichnete Felder sind
+                                            Pflichtfelder.</p>
                                     </div>
                                     <div class="sm:col-span-2">
-                                        <button type="submit"
-                                                class="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
-                                            Unverbindlich anfragen
-                                        </button>
+                                        {% include 'frontend/symbols/buttonB.html' with text='Unverbindlich anfragen' display_styles='w-full inline-flex items-center justify-center' %}
                                     </div>
                                 </form>
                             {% endif %}

@@ -1,3 +1,9 @@
 import 'alpinejs'
+import AOS from 'aos';
 
-console.log('SCRIPT LOADED')
+AOS.init({
+    offset: 220,
+    easing: 'ease-in-out',
+    disable: 'mobile',
+    once: true
+})

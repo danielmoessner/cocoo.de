@@ -1,1 +1,1 @@
-text-base font-semibold text-red-600 uppercase tracking-wide
+text-base font-semibold {{ color|default:'text-red-600' }} uppercase tracking-wide
