@@ -1,0 +1,1 @@
+font-semibold tracking-wide transition duration-100 {{ color|default:'text-red-700 hover:text-red-600' }}

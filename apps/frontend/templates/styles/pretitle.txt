@@ -1,0 +1,1 @@
+text-base font-semibold {{ color|default:'text-gray-800' }} uppercase tracking-wide

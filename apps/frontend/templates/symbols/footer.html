@@ -13,45 +13,50 @@
             <div class="mt-12 grid grid-cols-2 gap-8 xl:mt-0 xl:col-span-2">
                 <div class="md:grid md:grid-cols-2 md:gap-8">
                     <div>
-                        {% include 'frontend/symbols/footer_heading.html' with title="Navigation" %}
+                        {% include 'symbols/footer_heading.html' with title="Navigation" %}
                         <ul class="mt-4 space-y-4">
                             {% url 'index' as url %}
-                            {% include 'frontend/symbols/footer_link.html' with text="Startseite" link=url %}
+                            {% include 'symbols/footer_link.html' with text="Startseite" link=url %}
                             {% url 'member_list' as url %}
-                            {% include 'frontend/symbols/footer_link.html' with text="Team" link=url %}
+                            {% include 'symbols/footer_link.html' with text="Team" link=url %}
                             {% url 'contact' as url %}
-                            {% include 'frontend/symbols/footer_link.html' with text="Kontakt" link=url %}
+                            {% include 'symbols/footer_link.html' with text="Kontakt" link=url %}
                         </ul>
                     </div>
                     <div class="mt-12 md:mt-0">
-                        {% include 'frontend/symbols/footer_heading.html' with title="Seminare" %}
+                        {% include 'symbols/footer_heading.html' with title="Seminare" %}
                         <ul class="mt-4 space-y-4">
                             {% for group in seminar_groups %}
                                 {% url 'seminargroup_list' as url %}
-                                {% include 'frontend/symbols/footer_link.html' with text=group.name link=url|add:'#'|add:group.slug %}
+                                {% include 'symbols/footer_link.html' with text=group.name link=url|add:'#'|add:group.slug %}
                             {% endfor %}
                         </ul>
                     </div>
                 </div>
                 <div class="md:grid md:grid-cols-2 md:gap-8">
                     <div>
-                        {% include 'frontend/symbols/footer_heading.html' with title="Kontakt" %}
+                        {% include 'symbols/footer_heading.html' with title="Kontakt" %}
                         <address class="text-gray-500 mt-4">
                             {{ general.company_name }} <br>
                             {{ general.address_street }} <br>
                             {{ general.address_city }} <br>
-                            <br>
-                            Telefon: {{ general.phone }} <br>
-                            E-Mail: {{ general.email }}
                         </address>
+                        <ul class="mt-2">
+                            <li class="text-gray-500">Telefon:</li>
+                            {% include 'symbols/footer_link.html' with text=general.phone link='tel:'|add:general.phone %}
+                        </ul>
+                        <ul class="mt-2">
+                            <li class="text-gray-500">E-Mail:</li>
+                            {% include 'symbols/footer_link.html' with text=general.email link='mailto:'|add:general.email %}
+                        </ul>
                     </div>
                     <div class="mt-12 md:mt-0 lg:text-right">
-                        {% include 'frontend/symbols/footer_heading.html' with title="Rechtliches" %}
+                        {% include 'symbols/footer_heading.html' with title="Rechtliches" %}
                         <ul class="mt-4 space-y-4">
                             {% url 'imprint' as url %}
-                            {% include 'frontend/symbols/footer_link.html' with text="Impressum" link=url class="text-sm" %}
+                            {% include 'symbols/footer_link.html' with text="Impressum" link=url class="text-sm" %}
                             {% url 'data_protection' as url %}
-                            {% include 'frontend/symbols/footer_link.html' with text="Datenschutz" link=url class="text-sm" %}
+                            {% include 'symbols/footer_link.html' with text="Datenschutz" link=url class="text-sm" %}
                         </ul>
                     </div>
                 </div>

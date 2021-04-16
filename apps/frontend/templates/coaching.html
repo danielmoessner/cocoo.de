@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% load imagefit %}
+
+{% block main %}
+    {% include 'symbols/header.html' with bg_class="bg-gray-050" svg_class="text-gray-100" title=page.header_heading text=page.header_text image=page.header_image.url image_alt="Kängaroo Kontakt" %}
+
+    <section class="{% include 'styles/section.txt' %} shadow z-10">
+        <div class="{% include 'styles/container.txt' %}">
+            {% include 'symbols/article.html' with text=page.content %}
+        </div>
+    </section>
+
+{% endblock main %}

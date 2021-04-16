@@ -1,4 +1,5 @@
-from apps.settings.models import Imprint, DataProtection, Contact, General, Index, Seminars, Team, Coaching
+from apps.settings.models import Imprint, DataProtection, Contact, General, Index, Seminars, Team, Coaching, Seminar, \
+    Member
 from tinymce.widgets import TinyMCE
 from django.contrib import admin
 from solo.admin import SingletonModelAdmin
@@ -44,3 +45,5 @@ admin.site.register(Index, SingletonModelAdmin)
 admin.site.register(Seminars, SingletonModelAdmin)
 admin.site.register(Team, SingletonModelAdmin)
 admin.site.register(Coaching, SingletonModelAdmin)
+admin.site.register(Seminar, SingletonModelAdmin)
+admin.site.register(Member, SingletonModelAdmin)

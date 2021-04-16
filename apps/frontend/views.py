@@ -1,6 +1,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from apps.training.models import SeminarGroup, SeminarExecution, SeminarTopic
-from apps.settings.models import Imprint, DataProtection, Contact, General, Team, Index, Seminars, Coaching
+from apps.settings.models import Imprint, DataProtection, Contact, General, Team, Index, Seminars, Coaching, Seminar, \
+    Member as MemberPage
 from apps.customer.models import Testimonial
 from apps.frontend.forms import ContactForm, SeminarRegistrationForm
 from apps.team.models import Member, Book
@@ -10,6 +11,7 @@ from django.urls import reverse
 from django.conf import settings
 
 
+# mixins
 class AllContextMixin(generic.base.ContextMixin):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -18,8 +20,9 @@ class AllContextMixin(generic.base.ContextMixin):
         return context
 
 
+# views
 class IndexView(LoginRequiredMixin, AllContextMixin, generic.TemplateView):
-    template_name = 'frontend/index.html'
+    template_name = 'index.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -32,7 +35,7 @@ class IndexView(LoginRequiredMixin, AllContextMixin, generic.TemplateView):
 
 
 class MemberListView(LoginRequiredMixin, AllContextMixin, generic.ListView):
-    template_name = 'frontend/member/list.html'
+    template_name = 'team.html'
     model = Member
 
     def get_context_data(self, **kwargs):
@@ -44,7 +47,7 @@ class MemberListView(LoginRequiredMixin, AllContextMixin, generic.ListView):
 
 
 class ContactView(LoginRequiredMixin, AllContextMixin, generic.FormView):
-    template_name = 'frontend/contact.html'
+    template_name = 'contact.html'
     form_class = ContactForm
 
     def get_success_url(self):
@@ -68,28 +71,28 @@ class ContactView(LoginRequiredMixin, AllContextMixin, generic.FormView):
 
 
 class ImprintView(LoginRequiredMixin, AllContextMixin, generic.TemplateView):
-    template_name = 'frontend/imprint.html'
+    template_name = 'imprint.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['article'] = Imprint.objects.get()
+        context['page'] = Imprint.get_solo()
         context['seminar_groups'] = SeminarGroup.objects.all()
         return context
 
 
 class DataProtectionView(LoginRequiredMixin, AllContextMixin, generic.TemplateView):
-    template_name = 'frontend/data_protection.html'
+    template_name = 'data_protection.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['article'] = DataProtection.objects.get()
+        context['page'] = DataProtection.get_solo()
         context['seminar_groups'] = SeminarGroup.objects.all()
         return context
 
 
 class SeminarGroupListView(LoginRequiredMixin, AllContextMixin, generic.ListView):
     model = SeminarGroup
-    template_name = 'frontend/seminargroup/list.html'
+    template_name = 'seminargroups.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -101,7 +104,7 @@ class SeminarGroupListView(LoginRequiredMixin, AllContextMixin, generic.ListView
 class SeminarTopicDetailView(LoginRequiredMixin, AllContextMixin, generic.detail.SingleObjectMixin,
                              generic.FormView):
     model = SeminarTopic
-    template_name = 'frontend/seminartopic/detail.html'
+    template_name = 'seminar.html'
     form_class = SeminarRegistrationForm
 
     def get_success_url(self):
@@ -117,7 +120,7 @@ class SeminarTopicDetailView(LoginRequiredMixin, AllContextMixin, generic.detail
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-
+        context['page'] = Seminar.get_solo()
         context['seminar_executions'] = SeminarExecution.objects.filter(topic=self.object)
         return context
 
@@ -134,16 +137,17 @@ class SeminarTopicDetailView(LoginRequiredMixin, AllContextMixin, generic.detail
 
 class MemberDetailView(LoginRequiredMixin, AllContextMixin, generic.DetailView):
     model = Member
-    template_name = 'frontend/member/detail.html'
+    template_name = 'member.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['page'] = MemberPage.get_solo()
         context['seminar_groups'] = SeminarGroup.objects.all()
         return context
 
 
 class CoachingView(LoginRequiredMixin, AllContextMixin, generic.TemplateView):
-    template_name = 'frontend/coaching.html'
+    template_name = 'coaching.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

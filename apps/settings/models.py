@@ -125,3 +125,38 @@ class Coaching(SingletonModel):
 
     def __str__(self):
         return 'Coaching'
+
+
+class Seminar(SingletonModel):
+    content_pretitle = models.CharField(verbose_name='Inhalt Vortitel', max_length=80)
+    content_title = models.CharField(verbose_name='Inhalt Titel', max_length=80)
+    infos_title = models.CharField(verbose_name='Infos Titel', max_length=80)
+    infos_subtitle1 = models.CharField(verbose_name='Infos Untertitel 1', max_length=80)
+    infos_subtitle2 = models.CharField(verbose_name='Infos Untertitel 2', max_length=80)
+    infos_subtitle3 = models.CharField(verbose_name='Infos Untertitel 3', max_length=80)
+    seminars_title = models.CharField(verbose_name='Seminare Titel', max_length=80)
+    form_title = models.CharField(verbose_name='Formular Titel', max_length=80)
+    form_text = models.CharField(verbose_name='Formular Text', max_length=140)
+    form_dataprotection = models.CharField(verbose_name='Formular Datenschutz Text', max_length=200)
+    form_requiredfields = models.CharField(verbose_name='Formular Muss Felder Text', max_length=200)
+    form_button = models.CharField(verbose_name='Formular Button', max_length=200)
+    form_successtitle = models.CharField(verbose_name='Formular Erfolg Titel', max_length=80)
+    form_successtext = models.TextField(verbose_name='Formular Erfolg Text')
+    form_successbutton = models.CharField(verbose_name='Formular Erfolg Button', max_length=80)
+
+    class Meta:
+        verbose_name = 'Seminar'
+
+    def __str__(self):
+        return 'Seminar'
+
+
+class Member(SingletonModel):
+    content_pretitle = models.CharField(verbose_name='Inhalt Vortitel', max_length=80)
+    content_title = models.CharField(verbose_name='Inhalt Titel', max_length=80)
+
+    class Meta:
+        verbose_name = 'Teammitglied'
+
+    def __str__(self):
+        return 'Teammitglied'

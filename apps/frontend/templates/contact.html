@@ -1,14 +1,14 @@
-{% extends 'frontend/base.html' %}
+{% extends 'base.html' %}
 
 {% load static %}
 
 {% block main %}
 
-    {% include 'frontend/symbols/header.html' with bg_class="bg-gray-050" svg_class="text-gray-100" title=page.header_heading text=page.header_text image=page.header_image.url image_alt="Kängaroo Kontakt" %}
+    {% include 'symbols/header.html' with bg_class="bg-gray-050" svg_class="text-gray-100" title=page.header_heading text=page.header_text image=page.header_image.url image_alt="Kängaroo Kontakt" %}
 
-    <section class="{% include 'frontend/styles/section.txt' %} shadow relative z-10">
-        <div class="{% include 'frontend/styles/container.txt' %}">
-            <div class="{% include 'frontend/styles/padding.txt' %}">
+    <section class="{% include 'styles/section.txt' %} shadow relative z-10">
+        <div class="{% include 'styles/container.txt' %}">
+            <div class="{% include 'styles/padding.txt' %}">
                 <div class="pt-32 pb-32">
                     <div class="divide-y-2 divide-gray-200">
                         <div class="lg:grid lg:grid-cols-3 lg:gap-8">

@@ -1,17 +1,18 @@
-{% extends 'frontend/base.html' %}
+{% extends 'base.html' %}
 
 {% load static %}
 {% load imagefit %}
 
 {% block main %}
 
-    <section class="{% include 'frontend/styles/section.txt' %}">
-        <div class="{% include 'frontend/styles/container.txt' %}">
-            <div class="{% include 'frontend/styles/padding.txt' %}">
+    <section class="{% include 'styles/section.txt' %}">
+        <div class="{% include 'styles/container.txt' %}">
+            <div class="{% include 'styles/padding.txt' %}">
                 <div class="py-16 sm:py-24">
                     <div class="pb-16 flex flex-col-reverse items-start md:flex-row md:items-center md:justify-between">
                         <div class="w-full md:w-8/12">
-                            <h1 data-aos="fade-up" data-aos-delay="0" class="text-4xl font-extrabold sm:text-5xl sm:tracking-tight">
+                            <h1 data-aos="fade-up" data-aos-delay="0"
+                                class="text-4xl font-extrabold sm:text-5xl sm:tracking-tight">
                                 <span class="text-red-600">{{ object.title }}</span>
                             </h1>
                             <p data-aos='fade-up' data-aos-delay="150" class="mt-5 text-xl text-gray-500">
@@ -19,18 +20,20 @@
                             </p>
                         </div>
                         {% if object.image %}
-                            <img data-aos="fade-up" data-aos-delay="300" class="w-40 mb-6 md:mb-0" src="{{ object.image.url|resize:'160x160' }}"
+                            <img data-aos="fade-up" data-aos-delay="300" class="w-40 mb-6 md:mb-0"
+                                 src="{{ object.image.url|resize:'160x160' }}"
                                  alt="{{ object.title }}">
                         {% endif %}
                     </div>
 
                     <div class="border-t border-gray-200 pt-16 xl:grid xl:grid-cols-3 xl:gap-x-8">
                         <div data-aos="fade-up">
-                            <h2 class="{% include 'frontend/styles/pretitle.txt' with color='text-gray-500' %}">Beschreibung</h2>
-                            <p class="{% include 'frontend/styles/h2.txt' %} text-red-400 mt-2">Worum geht es genau?</p>
+                            <h2 class="{% include 'styles/pretitle.txt' with color='text-gray-500' %}">{{ page.content_pretitle }}</h2>
+                            <p class="{% include 'styles/h2.txt' %} text-red-400 mt-2">{{ page.content_title }}</p>
                         </div>
                         <div class="mt-4 sm:mt-8 md:mt-10 xl:mt-0 xl:col-span-2">
-                            <div data-aos-delay="150" data-aos="fade-up" class="prose prose-red prose-lg max-w-none text-gray-500">
+                            <div data-aos-delay="150" data-aos="fade-up"
+                                 class="prose prose-red prose-lg max-w-none text-gray-500">
                                 {{ object.description|safe }}
                             </div>
                         </div>
@@ -40,18 +43,18 @@
         </div>
     </section>
 
-    <section data-aos="fade-up" class="{% include 'frontend/styles/section.txt' %}">
-        <div class="{% include 'frontend/styles/container.txt' %}">
-            <div class="{% include 'frontend/styles/padding.txt' %} py-12">
-                <div class="bg-red-400 rounded-2xl px-12 py-8 sm:py-12 shadow">
-                    <h2 class="{% include 'frontend/styles/h2.txt' with color='text-red-050' %}">
-                        Weitere Informationen
+    <section data-aos="fade-up" class="{% include 'styles/section.txt' %}">
+        <div class="{% include 'styles/container.txt' %}">
+            <div class="{% include 'styles/padding.txt' %} py-12">
+                <div class="bg-red-500 rounded-2xl px-12 py-8 sm:py-12 shadow">
+                    <h2 class="{% include 'styles/h2.txt' with color='text-red-050' %}">
+                        {{ page.infos_title }}
                     </h2>
                     <div class="mt-6 border-t border-red-100 border-opacity-25 pt-10">
                         <dl class="space-y-10 md:space-y-0 md:grid md:grid-cols-2  md:grid-rows-2 md:gap-x-8 md:gap-y-12">
                             <div>
                                 <dt class="text-lg leading-6 font-medium text-red-050">
-                                    Gibt es ein Zertifikat?
+                                    {{ page.infos_subtitle1 }}
                                 </dt>
                                 <dd class="mt-2 text-base text-red-050">
                                     {{ object.certificate }}
@@ -59,7 +62,7 @@
                             </div>
                             <div>
                                 <dt class="text-lg leading-6 font-medium text-red-050">
-                                    In welchen Sprachen wird das Thema angeboten?
+                                    {{ page.infos_subtitle2 }}
                                 </dt>
                                 <dd class="mt-2 text-base text-red-050">
                                     {{ object.languages }}
@@ -67,7 +70,7 @@
                             </div>
                             <div>
                                 <dt class="text-lg leading-6 font-medium text-red-050">
-                                    Wo findet das Thema statt?
+                                    {{ page.infos_subtitle3 }}
                                 </dt>
                                 <dd class="mt-2 text-base text-red-050">
                                     {{ object.executions }}
@@ -80,29 +83,27 @@
         </div>
     </section>
 
-    <section class="{% include 'frontend/styles/section.txt' %} bg-gray-100" id="anstehende-seminare">
-        <div class="{% include 'frontend/styles/container.txt' %}">
-            <div class="{% include 'frontend/styles/padding.txt' %}">
+    <section class="{% include 'styles/section.txt' %} bg-gray-100" id="anstehende-seminare">
+        <div class="{% include 'styles/container.txt' %}">
+            <div class="{% include 'styles/padding.txt' %}">
                 <div class="py-32">
-                    <h2 class="{% include 'frontend/styles/h2.txt' %} text-blue-500">Anstehende Seminare</h2>
-                    {#                    <div class="bg-white shadow overflow-hidden sm:rounded-md mt-10">#}
-                    {#                        <ul class="divide-y divide-gray-200">#}
+                    <h2 class="{% include 'styles/h2.txt' %} text-blue-500">{{ page.seminars_title }}</h2>
                     <div class="mt-10">
                         <ul class="space-y-5">
                             {% for seminar in seminar_executions %}
-                                {#                                <li class="flex flex-col px-4 py-4 sm:pb-5 sm:pt-3 sm:px-5">#}
-                                <li data-aos="fade-up" class="rounded-2xl bg-blue-600 flex flex-col px-4 py-4 sm:pb-4 sm:pt-4 sm:px-5">
+                                <li data-aos="fade-up"
+                                    class="rounded-2xl bg-blue-600 flex flex-col px-4 py-4 sm:pb-4 sm:pt-4 sm:px-5">
                                     <div class="flex flex-col space-y-2 lg:space-x-6 lg:space-y-0 lg:flex-row lg:flex-wrap-none">
                                         {% with start_date=seminar.start_date|date:"d.m.Y" end_date=seminar.end_date|date:"d.m.Y" %}
-                                            {% include 'frontend/symbols/svg_info.html' with svg='frontend/symbols/svg/solid-users.svg' info=start_date|add:" - "|add:end_date|add:"&nbsp;&nbsp;"|add:seminar.execution_hours %}
+                                            {% include 'symbols/svg_info.html' with svg='symbols/svg/solid-users.svg' info=start_date|add:" - "|add:end_date|add:"&nbsp;&nbsp;"|add:seminar.execution_hours %}
                                         {% endwith %}
-                                        {% include 'frontend/symbols/svg_info.html' with svg='frontend/symbols/svg/solid-location-marker.svg' info=seminar.location|default:seminar.get_execution_display %}
+                                        {% include 'symbols/svg_info.html' with svg='symbols/svg/solid-location-marker.svg' info=seminar.location|default:seminar.get_execution_display %}
                                         {% if seminar.price %}
-                                            {% include 'frontend/symbols/svg_info.html' with svg='frontend/symbols/svg/solid-tag.svg' info=seminar.price|floatformat:2|add:' €' %}
+                                            {% include 'symbols/svg_info.html' with svg='symbols/svg/solid-tag.svg' info=seminar.price|floatformat:2|add:' €' %}
                                         {% else %}
-                                            {% include 'frontend/symbols/svg_info.html' with svg='frontend/symbols/svg/solid-tag.svg' info='Preis auf Anfrage' %}
+                                            {% include 'symbols/svg_info.html' with svg='symbols/svg/solid-tag.svg' info='Preis auf Anfrage' %}
                                         {% endif %}
-                                        {% include 'frontend/symbols/svg_info.html' with svg='frontend/symbols/svg/solid-globe-alt.svg' info=seminar.language %}
+                                        {% include 'symbols/svg_info.html' with svg='symbols/svg/solid-globe-alt.svg' info=seminar.language %}
                                     </div>
                                     <div class="flex flex-col mt-6 justify-between md:flex-row md:items-end">
                                         <div class="flex flex-col space-y-4 md:space-x-10 md:space-y-0 md:flex-row">
@@ -127,11 +128,11 @@
                                         </div>
                                         <div class="self-end mt-4 md:mt-0">
                                             {% if seminar.status == 'FULL' %}
-                                                <p class="px-2 inline-flex text-xs leading-5 font-semibold rounded-lg bg-red-100 text-red-800">
+                                                <p class="px-2 inline-flex text-xs leading-5 font-semibold rounded-lg bg-gray-100 text-gray-800">
                                                     {{ seminar.get_status_display }}
                                                 </p>
                                             {% else %}
-                                                {% include 'frontend/symbols/button.html' with href='#anfrage' text='Platz / Plätze anfragen' size_styles='px-4 py-2 text-sm' color_styles='bg-red-100 text-red-800 ring-red-200 ring-offset-blue-500 hover:bg-red-200' %}
+                                                {% include 'symbols/button.html' with href='#anfrage' text='Platz / Plätze anfragen' size_styles='px-4 py-2 text-sm' color_styles='bg-gray-050 text-gray-800 ring-gray-100 ring-offset-blue-500 hover:bg-gray-100' %}
                                             {% endif %}
                                         </div>
                                     </div>
@@ -146,9 +147,9 @@
 
 
 
-    <section class="{% include 'frontend/styles/section.txt' %} overflow-hidden relative shadow-center" id="anfrage">
-        <div class="{% include 'frontend/styles/container.txt' %}">
-            <div class="{% include 'frontend/styles/padding.txt' %}">
+    <section class="{% include 'styles/section.txt' %} overflow-hidden relative shadow-center" id="anfrage">
+        <div class="{% include 'styles/container.txt' %}">
+            <div class="{% include 'styles/padding.txt' %}">
                 <div class="pt-24 pb-32">
                     <svg class="hidden absolute left-full transform -translate-x-1/2 sm:block" width="404" height="404"
                          fill="none"
@@ -176,11 +177,10 @@
                     <div class="max-w-xl mx-auto relative z-10">
                         <div class="text-center">
                             <h2 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-                                Interessiert?
+                                {{ page.form_title }}
                             </h2>
                             <p class="mt-4 text-lg leading-6 text-gray-500">
-                                Sie können jederzeit unverbindlich anfragen. Füllen Sie einfach das Formular aus. Wir
-                                freuen uns auf Ihre Anfrage.
+                                {{ page.form_text }}
                             </p>
                         </div>
                         <div class="mt-12">
@@ -198,20 +198,18 @@
                                         </div>
                                         <div class="ml-3">
                                             <h3 class="text-sm font-medium text-green-800">
-                                                Anfrage abgeschickt
+                                                {{ page.form_successtitle }}
                                             </h3>
                                             <div class="mt-2 text-sm text-green-700">
                                                 <p>
-                                                    Vielen Dank für Ihre Anfrage. Wir werden uns
-                                                    schnellstmöglich bei Ihnen melden und Ihnen weitere Informationen
-                                                    zukommen lassen.
+                                                    {{ page.form_successtext }}
                                                 </p>
                                             </div>
                                             <div class="mt-4">
                                                 <div class="-mx-2 -my-1.5 flex">
                                                     <a href="{% url 'index' %}"
                                                        class="bg-green-50 px-2 py-1.5 rounded-md text-sm font-medium text-green-800 hover:bg-green-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-green-50 focus:ring-green-600">
-                                                        Zurück zur Startseite
+                                                        {{ page.form_successtext }}
                                                     </a>
                                                 </div>
                                             </div>
@@ -331,22 +329,17 @@
                                             </div>
                                             <div class="ml-3">
                                                 <p class="text-base text-gray-500">
-                                                    Ich stimme den
-                                                    <a href="#" class="font-medium text-gray-700 underline">
-                                                        Datenschutzbestimmungen
-                                                    </a>
-                                                    zu.
+                                                    {{ page.form_dataprotection }}
                                                 </p>
                                             </div>
                                         </div>
                                         {{ form.errors.data_protection }}
                                     </div>
                                     <div class="sm:col-span-2">
-                                        <p class="text-sm text-gray-700 mb-3">Mit * gekennzeichnete Felder sind
-                                            Pflichtfelder.</p>
+                                        <p class="text-sm text-gray-700 mb-3">{{ page.form_requiredfields }}</p>
                                     </div>
                                     <div class="sm:col-span-2">
-                                        {% include 'frontend/symbols/buttonB.html' with text='Unverbindlich anfragen' display_styles='w-full inline-flex items-center justify-center' %}
+                                        {% include 'symbols/buttonB.html' with type='submit' text=page.form_button display_styles='w-full inline-flex items-center justify-center' %}
                                     </div>
                                 </form>
                             {% endif %}

@@ -1,8 +1,8 @@
 {% load static %}
 <!-- This example requires Tailwind CSS v2.0+ -->
 <div class="relative bg-white shadow z-20" x-data="{open: false}" @click.away="open = false">
-    <div class="{% include 'frontend/styles/container.txt' %}">
-        <div class="{% include 'frontend/styles/padding.txt' %}">
+    <div class="{% include 'styles/container.txt' %}">
+        <div class="{% include 'styles/padding.txt' %}">
             <div class="flex justify-between items-center py-4 md:justify-start md:space-x-10">
                 <div class="flex justify-start flex-1 lg:w-0">
                     <a href="{% url 'index' %}">

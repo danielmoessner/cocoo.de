@@ -1,13 +1,13 @@
-{% extends 'frontend/base.html' %}
+{% extends 'base.html' %}
 
 {% load static %}
 {% load imagefit %}
 
 {% block main %}
 
-    <section class="{% include 'frontend/styles/section.txt' %}">
-        <div class=" {% include 'frontend/styles/container.txt' %}">
-            <div class=" {% include 'frontend/styles/padding.txt' %}">
+    <section class="{% include 'styles/section.txt' %}">
+        <div class=" {% include 'styles/container.txt' %}">
+            <div class=" {% include 'styles/padding.txt' %}">
                 <div class="py-16 sm:py-24 border-t-2 border-gray-100">
                     <div class="pb-16 xl:flex xl:items-center xl:justify-between">
                         <div class="w-8/12">
@@ -28,8 +28,8 @@
 
                     <div class="border-t border-gray-200 pt-16 xl:grid xl:grid-cols-3 xl:gap-x-8">
                         <div>
-                            <h2 class="{% include 'frontend/styles/pretitle.txt' %}">Genaueres</h2>
-                            <p class="{% include 'frontend/styles/h2.txt' %} mt-2">Mehr über {{ object.first_name }}</p>
+                            <h2 class="{% include 'styles/pretitle.txt' %}">{{ page.content_pretitle }}</h2>
+                            <p class="{% include 'styles/h2.txt' %} mt-2">{{ page.content_title }}</p>
                         </div>
                         <div class="mt-4 sm:mt-8 md:mt-10 xl:mt-0 xl:col-span-2">
                             <div class="prose prose-red prose-lg max-w-none text-gray-500">
