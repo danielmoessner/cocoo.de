@@ -12,7 +12,7 @@
                     <div class="pb-16 flex flex-col-reverse items-start md:flex-row md:items-center md:justify-between">
                         <div class="w-full md:w-8/12">
                             <h1 data-aos="fade-up" data-aos-delay="0" class="text-4xl font-extrabold sm:text-5xl sm:tracking-tight">
-                                <span class="text-red-400">{{ object.title }}</span>
+                                <span class="text-red-600">{{ object.title }}</span>
                             </h1>
                             <p data-aos='fade-up' data-aos-delay="150" class="mt-5 text-xl text-gray-500">
                                 {{ object.short_description }}
@@ -84,14 +84,14 @@
         <div class="{% include 'frontend/styles/container.txt' %}">
             <div class="{% include 'frontend/styles/padding.txt' %}">
                 <div class="py-32">
-                    <h2 class="{% include 'frontend/styles/h2.txt' %} text-purple-500">Anstehende Seminare</h2>
+                    <h2 class="{% include 'frontend/styles/h2.txt' %} text-blue-500">Anstehende Seminare</h2>
                     {#                    <div class="bg-white shadow overflow-hidden sm:rounded-md mt-10">#}
                     {#                        <ul class="divide-y divide-gray-200">#}
                     <div class="mt-10">
                         <ul class="space-y-5">
                             {% for seminar in seminar_executions %}
                                 {#                                <li class="flex flex-col px-4 py-4 sm:pb-5 sm:pt-3 sm:px-5">#}
-                                <li data-aos="fade-up" class="rounded-2xl bg-purple-400 flex flex-col px-4 py-4 sm:pb-4 sm:pt-4 sm:px-5">
+                                <li data-aos="fade-up" class="rounded-2xl bg-blue-600 flex flex-col px-4 py-4 sm:pb-4 sm:pt-4 sm:px-5">
                                     <div class="flex flex-col space-y-2 lg:space-x-6 lg:space-y-0 lg:flex-row lg:flex-wrap-none">
                                         {% with start_date=seminar.start_date|date:"d.m.Y" end_date=seminar.end_date|date:"d.m.Y" %}
                                             {% include 'frontend/symbols/svg_info.html' with svg='frontend/symbols/svg/solid-users.svg' info=start_date|add:" - "|add:end_date|add:"&nbsp;&nbsp;"|add:seminar.execution_hours %}
@@ -117,10 +117,10 @@
                                                         </div>
                                                     </div>
                                                     <div class="flex-1 pl-3">
-                                                        <h4 class="text-base font-medium text-purple-050 mb-0">
+                                                        <h4 class="text-base font-medium text-blue-050 mb-0">
                                                             {{ member.first_name }} {{ member.last_name }}
                                                         </h4>
-                                                        <p class="m-0 text-sm text-purple-100">Trainer</p>
+                                                        <p class="m-0 text-sm text-blue-100">Trainer</p>
                                                     </div>
                                                 </a>
                                             {% endfor %}
@@ -131,7 +131,7 @@
                                                     {{ seminar.get_status_display }}
                                                 </p>
                                             {% else %}
-                                                {% include 'frontend/symbols/button.html' with href='#anfrage' text='Platz / Plätze anfragen' size_styles='px-4 py-2 text-sm' color_styles='bg-red-100 text-red-800 ring-red-200 ring-offset-purple-500 hover:bg-red-200' %}
+                                                {% include 'frontend/symbols/button.html' with href='#anfrage' text='Platz / Plätze anfragen' size_styles='px-4 py-2 text-sm' color_styles='bg-red-100 text-red-800 ring-red-200 ring-offset-blue-500 hover:bg-red-200' %}
                                             {% endif %}
                                         </div>
                                     </div>
