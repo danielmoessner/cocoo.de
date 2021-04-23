@@ -5,7 +5,8 @@
 {% block main %}
 
     {% url 'seminargroup_list' as seminars_url %}
-    {% include 'symbols/header.html' with primary_button_link=seminars_url bg_class="bg-white" svg_class="text-gray-100" title=page.header_heading title_red=page.header_headingred text=page.header_text image=page.header_image.url image_alt="Kängaroo Kontakt" primary_button=page.header_buttonleft secondary_button=page.header_buttonright %}
+    {% url 'coaching' as coaching_url %}
+    {% include 'symbols/header.html' with primary_button_link=seminars_url bg_class="bg-white" svg_class="text-blue-500" secondary_button_link=coaching_url title=page.header_heading title_red=page.header_headingred text=page.header_text image=page.header_image.url image_alt="Kängaroo Kontakt" primary_button=page.header_buttonleft secondary_button=page.header_buttonright %}
 
     <section class="{% include 'styles/section.txt' %} shadow z-20 overflow-hidden">
         <svg class="absolute left-full bottom-full transform -translate-x-1/3 translate-y-1/4 lg:-translate-x-1/2 xl:translate-y-1/2"

@@ -17,6 +17,22 @@
                             <p class="mt-5 text-xl text-gray-500">
                                 {{ object.short_description }}
                             </p>
+                            <h2 class="sr-only">Zertifikate</h2>
+                            <div class="flex flex-wrap -mx-2 mt-8 space-x-6">
+                                {% for certificate in object.certificates.all %}
+                                    <div class="p-2">
+                                        {% if certificate.image %}
+                                            <img class="max-w-full h-20"
+                                                 style="margin: 0;"
+                                                 src="{{ certificate.image.url|resize:'200x800' }}"
+                                                 alt="{{ certificate.name }}"
+                                            />
+                                        {% else %}
+                                            <div class="text-gray-800 font-medium">{{ certificate.name }}</div>
+                                        {% endif %}
+                                    </div>
+                                {% endfor %}
+                            </div>
                         </div>
                         <div class="w-64">
                             <div class="w-full aspect-h-1 aspect-w-1 mb-2">
@@ -34,18 +50,6 @@
                         <div class="mt-4 sm:mt-8 md:mt-10 xl:mt-0 xl:col-span-2">
                             <div class="prose prose-red prose-lg max-w-none text-gray-500">
                                 {{ object.description|safe }}
-                                <h2>Zertifikate</h2>
-                                <div class="flex flex-wrap -mx-2">
-                                    {% for certificate in object.certificates.all %}
-                                        <div class="p-2">
-                                            <img class="max-w-full h-auto"
-                                                 style="margin: 0;"
-                                                 src="{{ certificate.image.url|resize:'200x800' }}"
-                                                 alt="{{ certificate.name }}"
-                                            />
-                                        </div>
-                                    {% endfor %}
-                                </div>
                             </div>
                         </div>
                     </div>

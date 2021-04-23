@@ -25,6 +25,10 @@ class SeminarGroup(models.Model):
         self.slug = self.slug.lower()
         super().save(*args, **kwargs)
 
+    @property
+    def topics_sorted(self):
+        return self.seminar_topics.order_by('-title')
+
 
 class SeminarTopic(models.Model):
     title = models.CharField(max_length=200, verbose_name='Name')
@@ -81,7 +85,7 @@ class SeminarExecution(models.Model):
     draft = models.BooleanField(default=True, verbose_name="Entwurf")
 
     class Meta:
-        ordering = ['-start_date']
+        ordering = ['start_date']
         verbose_name = 'Seminardurchführung'
         verbose_name_plural = 'Seminardurchführungen'
 
