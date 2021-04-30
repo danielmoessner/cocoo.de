@@ -1,4 +1,4 @@
-from apps.pages.models import Imprint, DataProtection, Contact, General, Index, Seminars, Team, Coaching, Seminar, \
+from apps.pages.models import Imprint, DataProtection, Contact, Index, Seminars, Team, Coaching, Seminar, \
     Member
 from tinymce.widgets import TinyMCE
 from django.contrib import admin
@@ -40,7 +40,6 @@ class DataProtectionModelAdmin(SingletonModelAdmin):
 
 admin.site.register(DataProtection, DataProtectionModelAdmin)
 admin.site.register(Contact, SingletonModelAdmin)
-admin.site.register(General, SingletonModelAdmin)
 admin.site.register(Index, SingletonModelAdmin)
 admin.site.register(Seminars, SingletonModelAdmin)
 admin.site.register(Team, SingletonModelAdmin)

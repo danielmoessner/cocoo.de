@@ -23,21 +23,6 @@ class DataProtection(SingletonModel):
         return 'Datenschutz'
 
 
-class General(SingletonModel):
-    company_name = models.CharField(verbose_name='Unternehmensname', max_length=100, default='CoCoo GmbH', blank=True)
-    phone = models.CharField(verbose_name='Telefon', max_length=100, blank=True)
-    email = models.CharField(verbose_name='E-Mail', max_length=100, blank=True)
-    address_street = models.CharField(verbose_name='Adresse Straße', max_length=100, blank=True)
-    address_city = models.CharField(verbose_name='Adresse Stadt', max_length=100, blank=True)
-    help_statement = models.TextField(verbose_name='Statement', blank=True)
-
-    class Meta:
-        verbose_name = 'Allgemein'
-
-    def __str__(self):
-        return 'Allgemein'
-
-
 class Contact(SingletonModel):
     header_heading = models.CharField(verbose_name='Header Überschrift', max_length=60, blank=True)
     header_text = models.CharField(verbose_name='Header Text', max_length=200, blank=True)

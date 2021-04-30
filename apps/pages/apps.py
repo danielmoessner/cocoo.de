@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class SettingsConfig(AppConfig):
+class PagesConfig(AppConfig):
     name = 'apps.pages'
-    verbose_name = 'Einstellungen und Seiten'
+    verbose_name = 'Seiten'

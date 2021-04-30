@@ -1,6 +1,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from apps.training.models import SeminarGroup, SeminarExecution, SeminarTopic
-from apps.pages.models import Imprint, DataProtection, Contact, General, Team, Index, Seminars, Coaching, Seminar, \
+from apps.settings.models import General
+from apps.pages.models import Imprint, DataProtection, Contact, Team, Index, Seminars, Coaching, Seminar, \
     Member as MemberPage
 from apps.customer.models import Testimonial
 from apps.frontend.forms import ContactForm, SeminarRegistrationForm
