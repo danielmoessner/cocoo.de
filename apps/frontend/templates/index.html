@@ -25,11 +25,11 @@
             <div class="{% include 'styles/padding.txt' %}">
                 <div class="py-32">
                     <div class="lg:text-center">
-                        <h2 class="{% include 'styles/pretitle.txt' %}">{{ page.intro_pretitle }}</h2>
-                        <p class="mt-2 {% include 'styles/h2.txt' %}">
+                        <h2 class="{% include 'styles/pretitle.txt' %}" data-aos="fade-up">{{ page.intro_pretitle }}</h2>
+                        <p class="mt-2 {% include 'styles/h2.txt' %}" data-aos="fade-up" data-aos-delay="100">
                             {{ page.intro_title }}
                         </p>
-                        <p class="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
+                        <p class="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto" data-aos="fade-up" data-aos-delay="200">
                             {{ page.intro_subtitle }}
                         </p>
                     </div>
@@ -64,8 +64,8 @@
         <div class="{% include 'styles/container.txt' %}">
             <div class="{% include 'styles/padding.txt' %}">
                 <div class="py-12 md:py-20 lg:pb-32 lg:pt-24">
-                    <h2 class="{% include 'styles/h2.txt' %} text-center">{{ page.testimonials_heading }}</h2>
-                    <div class="relative mt-8">
+                    <h2 class="{% include 'styles/h2.txt' %} text-center" data-aos="fade-up" data-aos-delay="">{{ page.testimonials_heading }}</h2>
+                    <div class="relative mt-8" data-aos="fade-up" data-aos-delay="100">
                         <blockquote class="">
                             <div class="max-w-3xl mx-auto text-center text-2xl leading-9 font-medium text-gray-900">
                                 <p>

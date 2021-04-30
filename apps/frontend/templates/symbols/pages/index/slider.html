@@ -2,10 +2,10 @@
     <div class="{% include 'styles/container.txt' %}">
         <div class="{% include 'styles/padding.txt' %}">
             <div class="pt-32 pb-32">
-                <h2 class="{% include 'styles/h2.txt' with color='text-blue-600' %} mb-5 md:text-4xl lg:mb-10">
+                <h2 class="{% include 'styles/h2.txt' with color='text-blue-600' %} mb-5 md:text-4xl lg:mb-10" data-aos="fade-up" data-aos-delay="">
                     {{ page.seminars_heading }}
                 </h2>
-                <div class="">
+                <div class="" data-aos="fade-up" data-aos-delay="100">
                     <div class="flex relative"
                          x-data="slider()"
                          x-init="setup()">
