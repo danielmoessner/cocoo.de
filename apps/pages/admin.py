@@ -1,4 +1,4 @@
-from apps.settings.models import Imprint, DataProtection, Contact, General, Index, Seminars, Team, Coaching, Seminar, \
+from apps.pages.models import Imprint, DataProtection, Contact, General, Index, Seminars, Team, Coaching, Seminar, \
     Member
 from tinymce.widgets import TinyMCE
 from django.contrib import admin

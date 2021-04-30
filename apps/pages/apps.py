@@ -2,5 +2,5 @@ from django.apps import AppConfig
 
 
 class SettingsConfig(AppConfig):
-    name = 'apps.settings'
+    name = 'apps.pages'
     verbose_name = 'Einstellungen und Seiten'

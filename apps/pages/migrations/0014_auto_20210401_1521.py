@@ -6,7 +6,7 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('settings', '0013_index_seminartopiclist_team'),
+        ('pages', '0013_index_seminartopiclist_team'),
     ]
 
     operations = [

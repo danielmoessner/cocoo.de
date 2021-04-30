@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('settings', '0002_dataprotection'),
+        ('pages', '0002_dataprotection'),
     ]
 
     operations = [

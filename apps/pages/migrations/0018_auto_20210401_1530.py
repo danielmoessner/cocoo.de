@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('settings', '0016_auto_20210401_1529'),
+        ('pages', '0017_auto_20210401_1530'),
     ]
 
     operations = [
         migrations.AlterField(
             model_name='index',
             name='header_headingred',
-            field=models.CharField(max_length=200, verbose_name='Header Überschrift Rot'),
+            field=models.CharField(blank=True, max_length=200, verbose_name='Header Überschrift Rot'),
         ),
     ]

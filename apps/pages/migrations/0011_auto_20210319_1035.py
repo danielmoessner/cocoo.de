@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('settings', '0010_contact_header_image'),
+        ('pages', '0010_contact_header_image'),
     ]
 
     operations = [

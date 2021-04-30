@@ -6,7 +6,7 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('settings', '0015_team_team_heading'),
+        ('pages', '0015_team_team_heading'),
     ]
 
     operations = [

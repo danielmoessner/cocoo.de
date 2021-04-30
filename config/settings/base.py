@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'apps.team.apps.TeamConfig',
     'apps.customer.apps.CustomerConfig',
     'apps.frontend.apps.FrontendConfig',
-    'apps.settings.apps.SettingsConfig',
+    'apps.pages.apps.SettingsConfig',
 ]
 
 MIDDLEWARE = [
