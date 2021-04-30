@@ -2,6 +2,8 @@ from tinymce.models import HTMLField
 from solo.models import SingletonModel
 from django.db import models
 
+from apps.settings.models import Image
+
 
 class Imprint(SingletonModel):
     text = HTMLField(verbose_name='Inhalt')
@@ -26,7 +28,7 @@ class DataProtection(SingletonModel):
 class Contact(SingletonModel):
     header_heading = models.CharField(verbose_name='Header Überschrift', max_length=60, blank=True)
     header_text = models.CharField(verbose_name='Header Text', max_length=200, blank=True)
-    header_image = models.ImageField(verbose_name='Header Bild', upload_to='contact/')
+    header_image = models.ForeignKey(Image, verbose_name='Header Bild', on_delete=models.PROTECT)
     contact_heading = models.CharField(verbose_name='Kontakt Überschrift', max_length=80, blank=True)
     contact_emailphone = models.CharField(verbose_name='E-Mail und Telefon Überschrift', max_length=50, blank=True)
     contact_address = models.CharField(verbose_name='Adresse Überschrift', max_length=50, blank=True)
@@ -47,7 +49,7 @@ class Contact(SingletonModel):
 class Team(SingletonModel):
     header_heading = models.CharField(verbose_name='Header Überschrift', max_length=60, blank=True)
     header_text = models.CharField(verbose_name='Header Text', max_length=200, blank=True)
-    header_image = models.ImageField(verbose_name='Header Bild', upload_to='team/')
+    header_image = models.ForeignKey(Image, verbose_name='Header Bild', on_delete=models.PROTECT)
     about_heading = models.CharField(verbose_name='Über uns Überschrift', max_length=100, blank=True)
     about_text = HTMLField(verbose_name='Über uns Text')
     team_heading = models.CharField(verbose_name='Team Überschrift', max_length=100, blank=True)
@@ -64,7 +66,7 @@ class Team(SingletonModel):
 class Seminars(SingletonModel):
     header_heading = models.CharField(verbose_name='Header Überschrift', max_length=60, blank=True)
     header_text = models.CharField(verbose_name='Header Text', max_length=200, blank=True)
-    header_image = models.ImageField(verbose_name='Header Bild', upload_to='seminartopiclist/')
+    header_image = models.ForeignKey(Image, verbose_name='Header Bild', on_delete=models.PROTECT)
 
     class Meta:
         verbose_name = 'Seminare'
@@ -77,7 +79,7 @@ class Index(SingletonModel):
     header_heading = models.CharField(verbose_name='Header Überschrift', max_length=60, blank=True)
     header_headingred = models.CharField(verbose_name='Header Überschrift Rot', max_length=200, blank=True)
     header_text = models.CharField(verbose_name='Header Text', max_length=200, blank=True)
-    header_image = models.ImageField(verbose_name='Header Bild', upload_to='index/')
+    header_image = models.ForeignKey(Image, verbose_name='Header Bild', on_delete=models.PROTECT)
     header_buttonleft = models.CharField(verbose_name='Header Button Links', max_length=50, blank=True)
     header_buttonright = models.CharField(verbose_name='Header Button Rechts', max_length=50, blank=True)
     intro_pretitle = models.CharField(verbose_name='Intro Vorüberschrift', max_length=200, blank=True)
@@ -102,7 +104,7 @@ class Index(SingletonModel):
 class Coaching(SingletonModel):
     header_heading = models.CharField(verbose_name='Header Überschrift', max_length=60, blank=True)
     header_text = models.CharField(verbose_name='Header Text', max_length=200, blank=True)
-    header_image = models.ImageField(verbose_name='Header Bild', upload_to='team/')
+    header_image = models.ForeignKey(Image, verbose_name='Header Bild', on_delete=models.PROTECT)
     content = HTMLField(verbose_name='Inhalt')
 
     class Meta:

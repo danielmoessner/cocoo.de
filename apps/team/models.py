@@ -1,6 +1,8 @@
 from django.db import models
 from tinymce.models import HTMLField
 
+from apps.settings.models import Image
+
 
 class Member(models.Model):
     first_name = models.CharField(max_length=50, verbose_name='Vorname')
@@ -30,7 +32,7 @@ class Member(models.Model):
 
 class Certification(models.Model):
     name = models.CharField(verbose_name='Name', max_length=100)
-    image = models.ImageField(verbose_name='Bild', upload_to='certification/', blank=True)
+    image = models.ForeignKey(Image, verbose_name='Bild', blank=True, null=True, on_delete=models.PROTECT)
     members = models.ManyToManyField(Member, verbose_name='Teammitglieder', related_name='certificates')
     #
     created = models.DateTimeField(auto_now_add=True)

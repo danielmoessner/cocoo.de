@@ -1,3 +1,4 @@
+from apps.settings.models import Image
 from apps.team.models import Member
 from tinymce.models import HTMLField
 from django.db import models
@@ -37,7 +38,7 @@ class SeminarTopic(models.Model):
                                       'cocoo.de/seminarthema/certified-less-practitioner/.')
     short_description = models.TextField(verbose_name='Kurzbeschreibung')
     description = HTMLField(verbose_name='Beschreibung')
-    image = models.ImageField(verbose_name='Bild', upload_to='seminartopic/', blank=True, null=True)
+    image = models.ForeignKey(Image, verbose_name='Bild', blank=True, null=True, on_delete=models.PROTECT)
     certificate = models.TextField(verbose_name='Zertifikatsaussage')
     languages = models.TextField(verbose_name='Sprachen')
     executions = models.TextField(verbose_name='Durchführungen')
