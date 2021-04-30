@@ -104,8 +104,11 @@ class Index(SingletonModel):
 class Coaching(SingletonModel):
     header_heading = models.CharField(verbose_name='Header Überschrift', max_length=60, blank=True)
     header_text = models.CharField(verbose_name='Header Text', max_length=200, blank=True)
-    header_image = models.ForeignKey(Image, verbose_name='Header Bild', on_delete=models.PROTECT)
+    header_image = models.ForeignKey(Image, verbose_name='Header Bild', on_delete=models.PROTECT,
+                                     related_name='coaching_header_image')
     content = HTMLField(verbose_name='Inhalt')
+    content_image = models.ForeignKey(Image, verbose_name='Inhalt Bild', on_delete=models.PROTECT,
+                                      related_name='coaching_content_image', blank=True, null=True)
 
     class Meta:
         verbose_name = 'Coaching'

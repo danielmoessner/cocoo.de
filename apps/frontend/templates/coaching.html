@@ -10,6 +10,9 @@
         <div class="{% include 'styles/container.txt' %}">
             {% include 'symbols/article.html' with text=page.content %}
         </div>
+        <div class="max-w-6xl mx-auto pb-20">
+            <img src="{{ page.content_image.url }}" alt="{{ page.content_image.alt }}">
+        </div>
     </section>
 
 {% endblock main %}
