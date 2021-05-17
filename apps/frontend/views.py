@@ -108,6 +108,11 @@ class SeminarTopicDetailView(LoginRequiredMixin, AllContextMixin, generic.detail
     template_name = 'seminar.html'
     form_class = SeminarRegistrationForm
 
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['seminartopic'] = self.object
+        return kwargs
+
     def get_success_url(self):
         return reverse('seminartopic_detail', args=[self.object.pk])
 

@@ -36,9 +36,9 @@
                     <div class="mt-16">
                         <dl class="space-y-10 md:space-y-0 md:grid md:grid-cols-2 md:gap-x-8 md:gap-y-10">
                             {% url 'seminargroup_list' as url %}
-                            {% include 'symbols/pages/index/box.html' with heading=page.intro_leftheading text=page.intro_lefttext href=url svg='symbols/svg/outline-user-group.svg' %}
+                            {% include 'symbols/pages/index/box.html' with heading=page.intro_leftheading text=page.intro_lefttext href=url %}
                             {% url 'coaching' as url %}
-                            {% include 'symbols/pages/index/box.html' with heading=page.intro_rightheading text=page.intro_righttext href=url svg='symbols/svg/outline-presentation-chart-line.svg' %}
+                            {% include 'symbols/pages/index/box.html' with heading=page.intro_rightheading text=page.intro_righttext href=url %}
                         </dl>
                     </div>
                 </div>

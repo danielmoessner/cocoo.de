@@ -9,20 +9,20 @@ class Imprint(SingletonModel):
     text = HTMLField(verbose_name='Inhalt')
 
     class Meta:
-        verbose_name = "Impressum"
+        verbose_name = "C: Impressum"
 
     def __str__(self):
-        return 'Impressum'
+        return 'C: Impressum'
 
 
 class DataProtection(SingletonModel):
     text = HTMLField(verbose_name='Inhalt')
 
     class Meta:
-        verbose_name = "Datenschutz"
+        verbose_name = "C: Datenschutz"
 
     def __str__(self):
-        return 'Datenschutz'
+        return 'C: Datenschutz'
 
 
 class Contact(SingletonModel):
@@ -40,10 +40,10 @@ class Contact(SingletonModel):
     form_successlink = models.CharField(verbose_name='Formular Abgeschickt Linktext', max_length=80, blank=True)
 
     class Meta:
-        verbose_name = 'Kontakt'
+        verbose_name = 'A: Kontakt'
 
     def __str__(self):
-        return 'Kontakt'
+        return 'A: Kontakt'
 
 
 class Team(SingletonModel):
@@ -57,10 +57,10 @@ class Team(SingletonModel):
     books_subheading = models.CharField(verbose_name='Bücher Unterüberschrift', max_length=200, blank=True)
 
     class Meta:
-        verbose_name = 'Team'
+        verbose_name = 'A: Team'
 
     def __str__(self):
-        return 'Team'
+        return 'A: Team'
 
 
 class Seminars(SingletonModel):
@@ -69,10 +69,10 @@ class Seminars(SingletonModel):
     header_image = models.ForeignKey(Image, verbose_name='Header Bild', on_delete=models.PROTECT)
 
     class Meta:
-        verbose_name = 'Seminare'
+        verbose_name = 'A: Seminare'
 
     def __str__(self):
-        return 'Seminare'
+        return 'A: Seminare'
 
 
 class Index(SingletonModel):
@@ -95,10 +95,10 @@ class Index(SingletonModel):
     testimonials_heading = models.CharField(verbose_name='Referenzen Überschrift', max_length=100, blank=True)
 
     class Meta:
-        verbose_name = 'Startseite'
+        verbose_name = 'A: Startseite'
 
     def __str__(self):
-        return 'Startseite'
+        return 'A: Startseite'
 
 
 class Coaching(SingletonModel):
@@ -111,20 +111,22 @@ class Coaching(SingletonModel):
                                       related_name='coaching_content_image', blank=True, null=True)
 
     class Meta:
-        verbose_name = 'Coaching'
+        verbose_name = 'A: Coaching'
 
     def __str__(self):
-        return 'Coaching'
+        return 'A: Coaching'
 
 
 class Seminar(SingletonModel):
     content_pretitle = models.CharField(verbose_name='Inhalt Vortitel', max_length=80, blank=True)
     content_title = models.CharField(verbose_name='Inhalt Titel', max_length=80, blank=True)
     infos_title = models.CharField(verbose_name='Infos Titel', max_length=80, blank=True)
-    infos_subtitle1 = models.CharField(verbose_name='Infos Untertitel 1', max_length=80, blank=True)
-    infos_subtitle2 = models.CharField(verbose_name='Infos Untertitel 2', max_length=80, blank=True)
-    infos_subtitle3 = models.CharField(verbose_name='Infos Untertitel 3', max_length=80, blank=True)
+    infos_subtitle1 = models.CharField(verbose_name='Zertifikat Titel', max_length=80, blank=True)
+    infos_subtitle2 = models.CharField(verbose_name='Sprache Titel', max_length=80, blank=True)
+    infos_subtitle3 = models.CharField(verbose_name='Ort Titel', max_length=80, blank=True)
+    infos_subtitle4 = models.CharField(verbose_name='Rabattaktionen Titel', max_length=80, blank=True)
     seminars_title = models.CharField(verbose_name='Seminare Titel', max_length=80, blank=True)
+    seminars_empty = models.TextField(verbose_name='Keine Seminare vorhanden', blank=True)
     form_title = models.CharField(verbose_name='Formular Titel', max_length=80, blank=True)
     form_text = models.CharField(verbose_name='Formular Text', max_length=140, blank=True)
     form_dataprotection = models.CharField(verbose_name='Formular Datenschutz Text', max_length=200, blank=True)
@@ -135,10 +137,10 @@ class Seminar(SingletonModel):
     form_successbutton = models.CharField(verbose_name='Formular Erfolg Button', max_length=80, blank=True)
 
     class Meta:
-        verbose_name = 'Seminar'
+        verbose_name = 'B: Seminar'
 
     def __str__(self):
-        return 'Seminar'
+        return 'B: Seminar'
 
 
 class Member(SingletonModel):
@@ -146,7 +148,7 @@ class Member(SingletonModel):
     content_title = models.CharField(verbose_name='Inhalt Titel', max_length=80, blank=True)
 
     class Meta:
-        verbose_name = 'Teammitglied'
+        verbose_name = 'B: Teammitglied'
 
     def __str__(self):
-        return 'Teammitglied'
+        return 'B: Teammitglied'

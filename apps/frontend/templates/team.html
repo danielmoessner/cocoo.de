@@ -14,21 +14,25 @@
                     <div class="prose mb-24 lg:prose-lg" data-aos="fade-up">
                         {{ page.about_text|safe }}
                     </div>
-                    <h2 class="{% include 'styles/h2.txt' %} mb-12" data-aos="fade-up" data-aos-delay="100">{{ page.team_heading }}</h2>
+                    <h2 class="{% include 'styles/h2.txt' %} mb-12" data-aos="fade-up"
+                        data-aos-delay="100">{{ page.team_heading }}</h2>
                     <div class="grid sm:grid-cols-2 gap-y-12 gap-6 lg:grid-cols-4">
                         {% for member in object_list %}
-                            <div class="flex flex-col items-start" data-aos="fade-up" data-aos-delay="{% widthratio forloop.counter 1 50 %}">
+                            <div class="flex flex-col items-start" data-aos="fade-up"
+                                 data-aos-delay="{% widthratio forloop.counter 1 50 %}">
                                 <div class="w-32">
                                     <div class="w-full aspect-h-1 aspect-w-1 mb-2">
                                         <img class="rounded-full object-cover" src="{{ member.image.url }}"
                                              alt="{{ member.first_name }} {{ member.last_name }}">
                                     </div>
                                 </div>
-                                <h2 class="text-base tracking-tight font-extrabold text-gray-900 mb-1 sm:text-lg md:text-xl">
-                                    {{ member.first_name }} {{ member.last_name }}
-                                </h2>
-                                <p class="text-sm mb-3">{{ member.short_description }}</p>
-                                <a class="{% include 'styles/a.txt' %} pl-1"
+                                <a href="{% url 'member_detail' member.slug %}" class="block">
+                                    <h2 class="text-base tracking-tight font-extrabold text-gray-900 mb-1 sm:text-lg md:text-xl">
+                                        {{ member.first_name }} {{ member.last_name }}
+                                    </h2>
+                                    <p class="text-sm mb-3">{{ member.short_description }}</p>
+                                </a>
+                                <a class="{% include 'styles/a.txt' %}"
                                    href="{% url 'member_detail' member.slug %}">
                                     Mehr zu {{ member.first_name }}
                                 </a>

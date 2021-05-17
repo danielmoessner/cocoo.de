@@ -15,7 +15,7 @@ class SeminarGroup(models.Model):
     draft = models.BooleanField(default=True, verbose_name="Entwurf")
 
     class Meta:
-        ordering = ['name']
+        ordering = ['slug']
         verbose_name = 'Seminargruppe'
         verbose_name_plural = 'Seminargruppen'
 
@@ -44,6 +44,7 @@ class SeminarTopic(models.Model):
     executions = models.TextField(verbose_name='Durchführungen')
     seminar_group = models.ForeignKey(SeminarGroup, related_name='seminar_topics', verbose_name='Seminargruppe',
                                       on_delete=models.PROTECT)
+    promotions = models.TextField(verbose_name='Rabattaktionen')
 
     #
     created = models.DateTimeField(auto_now_add=True)
@@ -51,7 +52,7 @@ class SeminarTopic(models.Model):
     draft = models.BooleanField(default=True, verbose_name="Entwurf")
 
     class Meta:
-        ordering = ['title']
+        ordering = ['slug']
         verbose_name = 'Seminarthema'
         verbose_name_plural = 'Seminarthemen'
 
@@ -71,6 +72,9 @@ class SeminarExecution(models.Model):
     execution = models.CharField(choices=execution_choices, verbose_name='Durchführung', max_length=40)
     language = models.CharField(max_length=50, verbose_name='Sprache')
     price = models.DecimalField(max_digits=8, decimal_places=2, verbose_name='Preis', null=True, blank=True)
+    early_booking_price = models.DecimalField(max_digits=8, decimal_places=2, verbose_name='Frühbucherpreis', null=True,
+                                              blank=True)
+    show_early_booking_price = models.BooleanField(verbose_name='Frühbucherpreis anzeigen')
     execution_hours = models.TextField(verbose_name='Durchführungszeiten')
     STATUS_CHOICES = (
         ('OPEN', 'Plätze verfügbar'),
@@ -92,4 +96,4 @@ class SeminarExecution(models.Model):
 
     def __str__(self):
         return '{} - {}: {}'.format(self.start_date.strftime('%d.%m.%Y'),
-                                  self.end_date.strftime('%d.%m.%Y'), self.topic.title)
+                                    self.end_date.strftime('%d.%m.%Y'), self.topic.title)

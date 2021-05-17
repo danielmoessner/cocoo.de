@@ -13,6 +13,7 @@
                         <h1 class="text-4xl tracking-tight font-extrabold relative text-gray-900 sm:text-5xl md:text-6xl" data-aos="fade-up">
                             <span class="block {% if not title_red %}text-red-600{% endif %} xl:inline">{{ title }}</span>
                             {% if title_red %}
+                                <br>
                                 <span class="block text-red-600 xl:inline">{{ title_red }}</span>
                             {% endif %}
                         </h1>
@@ -24,7 +25,7 @@
                             {% if primary_button %}
                                 <div class="rounded-md shadow" data-aos="fade-up" data-aos-delay="200">
                                     <a href="{{ primary_button_link|default:'#' }}"
-                                       class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-red-600 hover:bg-red-700 md:py-4 md:text-lg md:px-10">
+                                       class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-red-700 bg-red-100 hover:bg-red-200 md:py-4 md:text-lg md:px-10">
                                         {{ primary_button }}
                                     </a>
                                 </div>

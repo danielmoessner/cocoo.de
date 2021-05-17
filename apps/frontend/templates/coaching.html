@@ -7,9 +7,7 @@
     {% include 'symbols/header.html' with bg_class="bg-gray-050" title=page.header_heading text=page.header_text image=page.header_image.url image_alt="Kängaroo Kontakt" %}
 
     <section class="{% include 'styles/section.txt' %} shadow z-10">
-        <div class="{% include 'styles/container.txt' %}">
-            {% include 'symbols/article.html' with text=page.content %}
-        </div>
+        {% include 'symbols/article.html' with text=page.content %}
         <div class="max-w-6xl mx-auto pb-20">
             <img src="{{ page.content_image.url }}" alt="{{ page.content_image.alt }}">
         </div>

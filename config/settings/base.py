@@ -128,6 +128,9 @@ MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'tmp/media/')
 
+#
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
+
 # Imagefit
 IMAGEFIT_ROOT = os.path.join(BASE_DIR, 'tmp')
 
