@@ -19,6 +19,9 @@ class CustomUserAdmin(UserAdmin):
     fieldsets = (
         (None, {'fields': ('username', 'password')}),
         (_('Personal info'), {'fields': ('first_name', 'last_name', 'email')}),
+        (_('Permissions'), {
+            'fields': ('is_staff', 'user_permissions'),
+        }),
         (_('Important dates'), {'fields': ('last_login', 'date_joined')}),
     )
     add_fieldsets = (
@@ -36,7 +39,6 @@ class CustomUserAdmin(UserAdmin):
         Given a model instance save it to the database.
         """
         obj.is_staff = True
-        obj.is_superuser = True
         obj.save()
 
 

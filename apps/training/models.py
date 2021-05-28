@@ -44,7 +44,7 @@ class SeminarTopic(models.Model):
     executions = models.TextField(verbose_name='Durchführungen')
     seminar_group = models.ForeignKey(SeminarGroup, related_name='seminar_topics', verbose_name='Seminargruppe',
                                       on_delete=models.PROTECT)
-    promotions = models.TextField(verbose_name='Rabattaktionen')
+    promotions = models.TextField(verbose_name='Rabattaktionen', blank=True)
 
     #
     created = models.DateTimeField(auto_now_add=True)
