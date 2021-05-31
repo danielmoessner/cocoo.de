@@ -30,7 +30,7 @@ class IndexView(LoginRequiredMixin, AllContextMixin, generic.TemplateView):
         context['seminar_groups'] = SeminarGroup.objects.all()
         context['seminar_executions'] = SeminarExecution.objects.filter(show_on_index=True)
         context['members'] = Member.objects.all()
-        context['testimonial'] = Testimonial.objects.order_by('?').first()
+        context['testimonials'] = Testimonial.objects.order_by('?')
         context['page'] = Index.get_solo()
         return context
 
@@ -52,12 +52,13 @@ class ContactView(LoginRequiredMixin, AllContextMixin, generic.FormView):
     form_class = ContactForm
 
     def get_success_url(self):
-        return reverse('contact')
+        return reverse('contact')+'?erfolg=True#erfolg'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['seminar_groups'] = SeminarGroup.objects.all()
         context['page'] = Contact.get_solo()
+        context['success'] = self.request.GET.get('erfolg', default=None)
         return context
 
     def form_valid(self, form):
@@ -66,9 +67,7 @@ class ContactView(LoginRequiredMixin, AllContextMixin, generic.FormView):
         sender = settings.DEFAULT_FROM_EMAIL
         recipient = settings.DEFAULT_FROM_EMAIL
         send_mail(subject, message, sender, [recipient])
-        context = self.get_context_data(form=form)
-        context['success'] = True
-        return self.render_to_response(context)
+        return super().form_valid(form)
 
 
 class ImprintView(LoginRequiredMixin, AllContextMixin, generic.TemplateView):
@@ -114,7 +113,7 @@ class SeminarTopicDetailView(LoginRequiredMixin, AllContextMixin, generic.detail
         return kwargs
 
     def get_success_url(self):
-        return reverse('seminartopic_detail', args=[self.object.pk])
+        return reverse('seminartopic_detail', args=[self.object.slug])+'?erfolg=True#erfolg'
 
     def get(self, request, *args, **kwargs):
         self.object = self.get_object()
@@ -128,6 +127,7 @@ class SeminarTopicDetailView(LoginRequiredMixin, AllContextMixin, generic.detail
         context = super().get_context_data(**kwargs)
         context['page'] = Seminar.get_solo()
         context['seminar_executions'] = SeminarExecution.objects.filter(topic=self.object)
+        context['success'] = self.request.GET.get('erfolg', default=None)
         return context
 
     def form_valid(self, form):
@@ -136,9 +136,7 @@ class SeminarTopicDetailView(LoginRequiredMixin, AllContextMixin, generic.detail
         sender = settings.DEFAULT_FROM_EMAIL
         recipient = settings.DEFAULT_FROM_EMAIL
         send_mail(subject, message, sender, [recipient])
-        context = self.get_context_data(form=form)
-        context['success'] = True
-        return self.render_to_response(context)
+        return super().form_valid(form)
 
 
 class MemberDetailView(LoginRequiredMixin, AllContextMixin, generic.DetailView):

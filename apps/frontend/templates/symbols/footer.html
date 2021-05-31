@@ -47,7 +47,7 @@
                         </ul>
                         <ul class="mt-2">
                             <li class="text-gray-500">E-Mail:</li>
-                            {% include 'symbols/footer_link.html' with text=general.email link='mailto:'|add:general.email %}
+                            {% include 'symbols/footer_link.html' with target='_blank' text=general.email link='mailto:'|add:general.email %}
                         </ul>
                     </div>
                     <div class="mt-12 md:mt-0 lg:text-right">

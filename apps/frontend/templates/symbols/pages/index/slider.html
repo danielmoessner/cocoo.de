@@ -2,7 +2,8 @@
     <div class="{% include 'styles/container.txt' %}">
         <div class="{% include 'styles/padding.txt' %}">
             <div class="pt-32 pb-32">
-                <h2 class="{% include 'styles/h2.txt' with color='text-blue-600' %} mb-5 md:text-4xl lg:mb-10" data-aos="fade-up" data-aos-delay="">
+                <h2 class="{% include 'styles/h2.txt' with color='text-blue-600' %} mb-5 md:text-4xl lg:mb-10"
+                    data-aos="fade-up" data-aos-delay="">
                     {{ page.seminars_heading }}
                 </h2>
                 <div class="" data-aos="fade-up" data-aos-delay="100">
@@ -13,7 +14,7 @@
                         <div class="flex-col pr-2 text-gray-600 absolute transform left-0 h-full -translate-x-full z-30 hidden md:flex">
                             <button
                                     class="p-2 focus:outline-none h-full"
-                                    x-on:click="previous()">
+                                    x-on:click="previous(); auto = false;">
                                 <svg class="w-8 h-8 mb-8" xmlns="http://www.w3.org/2000/svg" fill="none"
                                      viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -33,7 +34,7 @@
                             <div class="w-full flex items-center justify-center px-4">
                                 <template x-for="slide in slidesArray" :key="slide">
                                     <button class="mt-2 py-2 px-1.5 focus:outline-none"
-                                            x-on:click="set(slide)">
+                                            x-on:click="set(slide); auto = false;">
                                         <div class="w-8 h-1.5 overflow-hidden transition-colors duration-200 ease-out"
                                              :class="{
                                                           'bg-blue-500': activeSlide === slide,
@@ -49,7 +50,7 @@
                         <div class="hidden flex-col h-full pl-2 text-gray-600 z-30 md:flex absolute transform right-0 translate-x-full">
                             <button
                                     class="p-2 h-full focus:outline-none"
-                                    x-on:click="next()">
+                                    x-on:click="next(); auto = false;">
                                 <svg class="w-8 h-8 mb-8" xmlns="http://www.w3.org/2000/svg" fill="none"
                                      viewBox="0 0 24 24"
                                      stroke="currentColor">
@@ -73,8 +74,16 @@
             slidesArray: [],
             activeSlide: 0,
             previousSlide: 0,
+            auto: true,
             setup() {
-                this.slidesArray = Array.from(Array(this.numberOfSlides).keys())
+                this.slidesArray = Array.from(Array(this.numberOfSlides).keys());
+                setTimeout(() => this.autoPlay(), {{ page.seminars_autoplay }});
+            },
+            autoPlay() {
+                if (this.auto) {
+                    this.next();
+                    setTimeout(() => this.autoPlay(), {{ page.seminars_autoplay }});
+                }
             },
             next() {
                 if (this.activeSlide === this.slidesArray.length - 1) {

@@ -25,11 +25,13 @@
             <div class="{% include 'styles/padding.txt' %}">
                 <div class="py-32">
                     <div class="lg:text-center">
-                        <h2 class="{% include 'styles/pretitle.txt' %}" data-aos="fade-up">{{ page.intro_pretitle }}</h2>
+                        <h2 class="{% include 'styles/pretitle.txt' %}"
+                            data-aos="fade-up">{{ page.intro_pretitle }}</h2>
                         <p class="mt-2 {% include 'styles/h2.txt' %}" data-aos="fade-up" data-aos-delay="100">
                             {{ page.intro_title }}
                         </p>
-                        <p class="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto" data-aos="fade-up" data-aos-delay="200">
+                        <p class="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto" data-aos="fade-up"
+                           data-aos-delay="200">
                             {{ page.intro_subtitle }}
                         </p>
                     </div>
@@ -63,37 +65,68 @@
         </svg>
         <div class="{% include 'styles/container.txt' %}">
             <div class="{% include 'styles/padding.txt' %}">
-                <div class="py-12 md:py-20 lg:pb-32 lg:pt-24">
-                    <h2 class="{% include 'styles/h2.txt' %} text-center" data-aos="fade-up" data-aos-delay="">{{ page.testimonials_heading }}</h2>
-                    <div class="relative mt-8" data-aos="fade-up" data-aos-delay="100">
-                        <blockquote class="">
-                            <div class="max-w-3xl mx-auto text-center text-2xl leading-9 font-medium text-gray-900">
-                                <p>
-                                    &ldquo;{{ testimonial.testimonial }}&rdquo;
-                                </p>
-                            </div>
-                            {% if testimonial.customer %}
-                                <div class="mt-8">
-                                    <div class="md:flex md:items-center md:justify-center">
-                                        <div class="mt-3 text-center md:mt-0 md:ml-4 md:flex md:items-center">
-                                            <div class="text-base font-medium text-gray-900">{{ testimonial.customer }}</div>
-                                            {% if testimonial.company %}
-                                                <svg class="hidden md:block mx-1 h-5 w-5 text-red-600"
-                                                     fill="currentColor"
-                                                     viewBox="0 0 20 20">
-                                                    <path d="M11 0h3L9 20H6l5-20z"></path>
-                                                </svg>
-                                                <div class="text-base font-medium text-gray-500">{{ testimonial.company }}</div>
-                                            {% endif %}
+                <div class="py-12 md:py-20 lg:pb-32 lg:pt-24"
+                     x-data="testimonials()"
+                     x-init="init()"
+                >
+                    <h2 class="{% include 'styles/h2.txt' %} text-center" data-aos="fade-up"
+                        data-aos-delay="">{{ page.testimonials_heading }}</h2>
+                    {% for testimonial in testimonials %}
+                        <div class="relative mt-8" data-aos="fade-up" data-aos-delay="100">
+                            <blockquote
+                                    x-transition:enter="transition duration-1000 transform"
+                                    x-transition:enter-start="opacity-0 translate-x-full"
+                                    x-transition:enter-end="opacity-100 translate-x-0"
+                                    x-transition:leave="transition duration-1000 transform absolute"
+                                    x-transition:leave-start="opacity-100 translate-x-0"
+                                    x-transition:leave-end="opacity-0 -translate-x-full"
+                                    x-show="activeSlide === {{ forloop.counter0 }}"
+                                    class="">
+                                <div class="max-w-3xl mx-auto text-center text-2xl leading-9 font-medium text-gray-900">
+                                    <p>
+                                        &ldquo;{{ testimonial.testimonial }}&rdquo;
+                                    </p>
+                                </div>
+                                {% if testimonial.customer %}
+                                    <div class="mt-8">
+                                        <div class="md:flex md:items-center md:justify-center">
+                                            <div class="mt-3 text-center md:mt-0 md:ml-4 md:flex md:items-center">
+                                                <div class="text-base font-medium text-gray-900">{{ testimonial.customer }}</div>
+                                                {% if testimonial.company %}
+                                                    <svg class="hidden md:block mx-1 h-5 w-5 text-red-600"
+                                                         fill="currentColor"
+                                                         viewBox="0 0 20 20">
+                                                        <path d="M11 0h3L9 20H6l5-20z"></path>
+                                                    </svg>
+                                                    <div class="text-base font-medium text-gray-500">{{ testimonial.company }}</div>
+                                                {% endif %}
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            {% endif %}
-                        </blockquote>
-                    </div>
+                                {% endif %}
+                            </blockquote>
+                        </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>
+        <script>
+            window.testimonials = function () {
+                return {
+                    numberOfSlides: {{ testimonials.count }},
+                    activeSlide: 0,
+                    init() {
+                        setInterval(() => this.next(), {{ page.testimonials_autoplay }});
+                    },
+                    next() {
+                        this.activeSlide = this.activeSlide + 1;
+                        if (this.activeSlide === this.numberOfSlides) {
+                            this.activeSlide = 0;
+                        }
+                    }
+                }
+            }
+        </script>
     </section>
 
 {% endblock main %}

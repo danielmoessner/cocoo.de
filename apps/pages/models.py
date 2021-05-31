@@ -34,7 +34,7 @@ class Contact(SingletonModel):
     contact_address = models.CharField(verbose_name='Adresse Überschrift', max_length=50, blank=True)
     form_heading = models.CharField(verbose_name='Formular Überschrift', max_length=80, blank=True)
     form_buttontext = models.CharField(verbose_name='Formular Button Text', max_length=100, blank=True)
-    form_dataprotectiontext = models.CharField(verbose_name='Formular Datenschutz Text', max_length=200, blank=True)
+    form_dataprotection = models.CharField(verbose_name='Formular Datenschutz Text', max_length=200, blank=True)
     form_successheading = models.CharField(verbose_name='Formular Abgeschickt Überschrift', max_length=100, blank=True)
     form_successtext = models.CharField(verbose_name='Formular Abgeschickt Text', max_length=300, blank=True)
     form_successlink = models.CharField(verbose_name='Formular Abgeschickt Linktext', max_length=80, blank=True)
@@ -92,7 +92,12 @@ class Index(SingletonModel):
     intro_righttext = models.TextField(verbose_name='Intro Text Rechts')
     intro_rightbutton = models.CharField(verbose_name='Intro Button Rechts', max_length=200, blank=True)
     seminars_heading = models.CharField(verbose_name='Seminare Überschrift', max_length=100, blank=True)
+    seminars_autoplay = models.IntegerField(verbose_name='Seminare Autplay Timer',
+                                            help_text='Die Einheit ist [ms]. 5000 entspricht 5 Sekunden.', default=5000)
     testimonials_heading = models.CharField(verbose_name='Referenzen Überschrift', max_length=100, blank=True)
+    testimonials_autoplay = models.IntegerField(verbose_name='Referenzen Autplay Timer',
+                                                help_text='Die Einheit ist [ms]. 5000 entspricht 5 Sekunden.',
+                                                default=5000)
 
     class Meta:
         verbose_name = 'A: Startseite'
@@ -126,6 +131,7 @@ class Seminar(SingletonModel):
     infos_subtitle3 = models.CharField(verbose_name='Ort Titel', max_length=80, blank=True)
     infos_subtitle4 = models.CharField(verbose_name='Rabattaktionen Titel', max_length=80, blank=True)
     seminars_title = models.CharField(verbose_name='Seminare Titel', max_length=80, blank=True)
+    seminars_earlybooking = models.CharField(verbose_name='Frühbucherpreis Text', max_length=80, blank=True)
     seminars_empty = models.TextField(verbose_name='Keine Seminare vorhanden', blank=True)
     form_title = models.CharField(verbose_name='Formular Titel', max_length=80, blank=True)
     form_text = models.CharField(verbose_name='Formular Text', max_length=140, blank=True)
