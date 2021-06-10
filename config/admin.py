@@ -1,8 +1,9 @@
+from django.contrib.sites.models import Site
 from django.contrib.auth.models import Group, User
 from django.contrib.auth.admin import UserAdmin
 from django.utils.translation import gettext_lazy as _
 from django.contrib import admin
-
+from solo.admin import SingletonModelAdmin
 
 # disable the left sidebar
 admin.autodiscover()
@@ -44,3 +45,5 @@ class CustomUserAdmin(UserAdmin):
 
 admin.site.unregister(User)
 admin.site.register(User, CustomUserAdmin)
+admin.site.unregister(Site)
+admin.site.register(Site, SingletonModelAdmin)

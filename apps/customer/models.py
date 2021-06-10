@@ -17,3 +17,7 @@ class Testimonial(models.Model):
 
     def __str__(self):
         return '{}'.format(self.testimonial[:100])
+
+    @staticmethod
+    def all():
+        return Testimonial.objects.filter(draft=False)

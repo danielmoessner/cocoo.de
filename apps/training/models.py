@@ -30,6 +30,10 @@ class SeminarGroup(models.Model):
     def topics_sorted(self):
         return self.seminar_topics.order_by('-title')
 
+    @staticmethod
+    def all():
+        return SeminarGroup.objects.filter(draft=False)
+
 
 class SeminarTopic(models.Model):
     title = models.CharField(max_length=200, verbose_name='Name')
@@ -58,6 +62,10 @@ class SeminarTopic(models.Model):
 
     def __str__(self):
         return '{}'.format(self.title)
+
+    @staticmethod
+    def all():
+        return SeminarTopic.objects.filter(draft=False)
 
 
 class SeminarExecution(models.Model):
@@ -97,3 +105,7 @@ class SeminarExecution(models.Model):
     def __str__(self):
         return '{} - {}: {}'.format(self.start_date.strftime('%d.%m.%Y'),
                                     self.end_date.strftime('%d.%m.%Y'), self.topic.title)
+
+    @staticmethod
+    def all():
+        return SeminarExecution.objects.filter(draft=False)

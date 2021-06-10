@@ -1,7 +1,6 @@
-from django.db import models
-from tinymce.models import HTMLField
-
 from apps.settings.models import Image
+from tinymce.models import HTMLField
+from django.db import models
 
 
 class Member(models.Model):
@@ -29,6 +28,10 @@ class Member(models.Model):
     def name(self):
         return '{} {}'.format(self.first_name, self.last_name)
 
+    @staticmethod
+    def all():
+        return Member.objects.filter(draft=False)
+
 
 class Certification(models.Model):
     name = models.CharField(verbose_name='Name', max_length=100)
@@ -47,11 +50,16 @@ class Certification(models.Model):
     def __str__(self):
         return '{}'.format(self.name)
 
+    @staticmethod
+    def all():
+        return Certification.objects.filter(draft=False)
+
 
 class Book(models.Model):
     image = models.ImageField(verbose_name='Bild')
     title = models.CharField(max_length=100, verbose_name='Titel')
     description = models.TextField(verbose_name='Beschreibung')
+    draft = models.BooleanField(default=True, verbose_name="Entwurf")
 
     class Meta:
         ordering = ['title']
@@ -60,3 +68,7 @@ class Book(models.Model):
 
     def __str__(self):
         return '{}'.format(self.title)
+
+    @staticmethod
+    def all():
+        return Book.objects.filter(draft=False)

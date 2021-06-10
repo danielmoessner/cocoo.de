@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.admin',
+    'django.contrib.sites',
     'solo.apps.SoloAppConfig',
     'imagefit',
     'tinymce',
@@ -39,6 +40,7 @@ INSTALLED_APPS = [
     'apps.frontend.apps.FrontendConfig',
     'apps.pages.apps.PagesConfig',
     'apps.settings.apps.SettingsConfig',
+    'request'
 ]
 
 MIDDLEWARE = [
@@ -47,6 +49,7 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'request.middleware.RequestMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
@@ -159,3 +162,10 @@ EMAIL_HOST_USER = get_secret('EMAIL_USER')
 EMAIL_HOST_PASSWORD = get_secret('EMAIL_PWD')
 EMAIL_PORT = 587
 DEFAULT_FROM_EMAIL = get_secret('DEFAULT_FROM_EMAIL')
+
+
+# check whether the site should be password protected
+PROTECTED = get_secret('PROTECTED')
+
+
+SITE_ID = 1
