@@ -6,6 +6,8 @@ from apps.settings.models import Image
 
 
 class Imprint(SingletonModel):
+    meta_title = models.CharField('Meta Titel', blank=True, max_length=200)
+    meta_description = models.TextField('Meta Beschreibung', blank=True)
     text = HTMLField(verbose_name='Inhalt')
 
     class Meta:
@@ -16,6 +18,8 @@ class Imprint(SingletonModel):
 
 
 class DataProtection(SingletonModel):
+    meta_title = models.CharField('Meta Titel', blank=True, max_length=200)
+    meta_description = models.TextField('Meta Beschreibung', blank=True)
     text = HTMLField(verbose_name='Inhalt')
 
     class Meta:
@@ -26,6 +30,8 @@ class DataProtection(SingletonModel):
 
 
 class Contact(SingletonModel):
+    meta_title = models.CharField('Meta Titel', blank=True, max_length=200)
+    meta_description = models.TextField('Meta Beschreibung', blank=True)
     header_heading = models.CharField(verbose_name='Header Überschrift', max_length=60, blank=True)
     header_text = models.CharField(verbose_name='Header Text', max_length=200, blank=True)
     header_image = models.ForeignKey(Image, verbose_name='Header Bild', on_delete=models.PROTECT)
@@ -47,6 +53,8 @@ class Contact(SingletonModel):
 
 
 class Team(SingletonModel):
+    meta_title = models.CharField('Meta Titel', blank=True, max_length=200)
+    meta_description = models.TextField('Meta Beschreibung', blank=True)
     header_heading = models.CharField(verbose_name='Header Überschrift', max_length=60, blank=True)
     header_text = models.CharField(verbose_name='Header Text', max_length=200, blank=True)
     header_image = models.ForeignKey(Image, verbose_name='Header Bild', on_delete=models.PROTECT)
@@ -64,6 +72,8 @@ class Team(SingletonModel):
 
 
 class Seminars(SingletonModel):
+    meta_title = models.CharField('Meta Titel', blank=True, max_length=200)
+    meta_description = models.TextField('Meta Beschreibung', blank=True)
     header_heading = models.CharField(verbose_name='Header Überschrift', max_length=60, blank=True)
     header_text = models.CharField(verbose_name='Header Text', max_length=200, blank=True)
     header_image = models.ForeignKey(Image, verbose_name='Header Bild', on_delete=models.PROTECT)
@@ -76,6 +86,8 @@ class Seminars(SingletonModel):
 
 
 class Index(SingletonModel):
+    meta_title = models.CharField('Meta Titel', blank=True, max_length=200)
+    meta_description = models.TextField('Meta Beschreibung', blank=True)
     header_heading = models.CharField(verbose_name='Header Überschrift', max_length=60, blank=True)
     header_headingred = models.CharField(verbose_name='Header Überschrift Rot', max_length=200, blank=True)
     header_text = models.CharField(verbose_name='Header Text', max_length=200, blank=True)
@@ -107,6 +119,8 @@ class Index(SingletonModel):
 
 
 class Coaching(SingletonModel):
+    meta_title = models.CharField('Meta Titel', blank=True, max_length=200)
+    meta_description = models.TextField('Meta Beschreibung', blank=True)
     header_heading = models.CharField(verbose_name='Header Überschrift', max_length=60, blank=True)
     header_text = models.CharField(verbose_name='Header Text', max_length=200, blank=True)
     header_image = models.ForeignKey(Image, verbose_name='Header Bild', on_delete=models.PROTECT,
@@ -123,6 +137,8 @@ class Coaching(SingletonModel):
 
 
 class Seminar(SingletonModel):
+    meta_title = models.CharField('Meta Titel', blank=True, max_length=200)
+    meta_description = models.TextField('Meta Beschreibung', blank=True)
     content_pretitle = models.CharField(verbose_name='Inhalt Vortitel', max_length=80, blank=True)
     content_title = models.CharField(verbose_name='Inhalt Titel', max_length=80, blank=True)
     infos_title = models.CharField(verbose_name='Infos Titel', max_length=80, blank=True)
@@ -150,6 +166,8 @@ class Seminar(SingletonModel):
 
 
 class Member(SingletonModel):
+    meta_title = models.CharField('Meta Titel', blank=True, max_length=200)
+    meta_description = models.TextField('Meta Beschreibung', blank=True)
     content_pretitle = models.CharField(verbose_name='Inhalt Vortitel', max_length=80, blank=True)
     content_title = models.CharField(verbose_name='Inhalt Titel', max_length=80, blank=True)
 

@@ -29,7 +29,7 @@ class AllContextMixin(generic.base.ContextMixin):
         return context
 
 
-# views
+# general views
 class IndexView(ProtectMixin, AllContextMixin, generic.TemplateView):
     template_name = 'index.html'
 
@@ -115,6 +115,16 @@ class SeminarGroupListView(ProtectMixin, AllContextMixin, generic.ListView):
         return context
 
 
+class CoachingView(ProtectMixin, AllContextMixin, generic.TemplateView):
+    template_name = 'coaching.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['page'] = Coaching.get_solo()
+        return context
+
+
+# detail views
 class SeminarTopicDetailView(ProtectMixin, AllContextMixin, generic.detail.SingleObjectMixin,
                              generic.FormView):
     model = SeminarTopic
@@ -143,6 +153,8 @@ class SeminarTopicDetailView(ProtectMixin, AllContextMixin, generic.detail.Singl
         context['page'] = Seminar.get_solo()
         context['seminar_executions'] = SeminarExecution.all().filter(topic=self.object)
         context['success'] = self.request.GET.get('erfolg', default=None)
+        context['meta_title'] = self.object.title
+        context['meta_description'] = self.object.short_description
         return context
 
     def form_valid(self, form):
@@ -163,13 +175,6 @@ class MemberDetailView(ProtectMixin, AllContextMixin, generic.DetailView):
         context = super().get_context_data(**kwargs)
         context['page'] = MemberPage.get_solo()
         context['seminar_groups'] = SeminarGroup.all()
-        return context
-
-
-class CoachingView(ProtectMixin, AllContextMixin, generic.TemplateView):
-    template_name = 'coaching.html'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['page'] = Coaching.get_solo()
+        context['meta_title'] = '{} {}'.format(self.object.first_name, self.object.last_name)
+        context['meta_description'] = self.object.short_description
         return context
