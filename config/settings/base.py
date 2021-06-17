@@ -149,8 +149,13 @@ TINYMCE_DEFAULT_CONFIG = {
                "bold italic underline | forecolor backcolor | alignleft aligncenter "
                "alignright alignjustify | bullist numlist outdent indent | link",
     "block_formats": 'Paragraph=p; Überschrift=h3; Unterüberschrift=h4; Vorformatiert=pre',
-    "invalid_styles": 'font-family font-size font-weight',
+    # "invalid_styles": 'font-family font-size font-weight',
+    # "keep_styles": False,
     "valid_classes": "",
+    "valid_styles": {
+        '*': 'color,text-align,padding-left,text-decoration,background-color'
+    },
+    # "invalid_elements": "span",
     "advlist_bullet_styles": "default",
     "advlist_number_styles": "default"
 }
