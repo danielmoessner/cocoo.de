@@ -137,26 +137,26 @@ class Coaching(SingletonModel):
 
 
 class Seminar(SingletonModel):
-    meta_title = models.CharField('Meta Titel', blank=True, max_length=200)
-    meta_description = models.TextField('Meta Beschreibung', blank=True)
-    content_pretitle = models.CharField(verbose_name='Inhalt Vortitel', max_length=80, blank=True)
-    content_title = models.CharField(verbose_name='Inhalt Titel', max_length=80, blank=True)
-    infos_title = models.CharField(verbose_name='Infos Titel', max_length=80, blank=True)
-    infos_subtitle1 = models.CharField(verbose_name='Zertifikat Titel', max_length=80, blank=True)
-    infos_subtitle2 = models.CharField(verbose_name='Sprache Titel', max_length=80, blank=True)
-    infos_subtitle3 = models.CharField(verbose_name='Ort Titel', max_length=80, blank=True)
-    infos_subtitle4 = models.CharField(verbose_name='Rabattaktionen Titel', max_length=80, blank=True)
-    seminars_title = models.CharField(verbose_name='Seminare Titel', max_length=80, blank=True)
-    seminars_earlybooking = models.CharField(verbose_name='Frühbucherpreis Text', max_length=80, blank=True)
-    seminars_empty = models.TextField(verbose_name='Keine Seminare vorhanden', blank=True)
-    form_title = models.CharField(verbose_name='Formular Titel', max_length=80, blank=True)
-    form_text = models.CharField(verbose_name='Formular Text', max_length=140, blank=True)
-    form_dataprotection = models.CharField(verbose_name='Formular Datenschutz Text', max_length=200, blank=True)
-    form_requiredfields = models.CharField(verbose_name='Formular Muss Felder Text', max_length=200, blank=True)
-    form_button = models.CharField(verbose_name='Formular Button', max_length=200, blank=True)
-    form_successtitle = models.CharField(verbose_name='Formular Erfolg Titel', max_length=80, blank=True)
-    form_successtext = models.TextField(verbose_name='Formular Erfolg Text')
-    form_successbutton = models.CharField(verbose_name='Formular Erfolg Button', max_length=80, blank=True)
+    content_pretitle = models.CharField(verbose_name='Inhalt // Vortitel', max_length=80, blank=True)
+    content_title = models.CharField(verbose_name='Inhalt // Titel', max_length=80, blank=True)
+    infos_title = models.CharField(verbose_name='Infos // Titel', max_length=80, blank=True)
+    infos_subtitle1 = models.CharField(verbose_name='Infos // Zertifikat Titel', max_length=80, blank=True)
+    infos_subtitle2 = models.CharField(verbose_name='Infos // Sprache Titel', max_length=80, blank=True)
+    infos_subtitle3 = models.CharField(verbose_name='Infos // Ort Titel', max_length=80, blank=True)
+    infos_subtitle4 = models.CharField(verbose_name='Infos // Rabattaktionen Titel', max_length=80, blank=True)
+    seminars_title = models.CharField(verbose_name='Seminare // Titel', max_length=80, blank=True)
+    seminars_few_places = models.CharField(verbose_name='Seminare // Wenige Plätze verfügbar', max_length=80, blank=True,
+                                           default='Wenige Plätze verfügbar')
+    seminars_earlybooking = models.CharField(verbose_name='Seminare // Frühbucherpreis Text', max_length=80, blank=True)
+    seminars_empty = models.TextField(verbose_name='Seminare // Keine Seminare vorhanden', blank=True)
+    form_title = models.CharField(verbose_name='Formular // Titel', max_length=80, blank=True)
+    form_text = models.CharField(verbose_name='Formular // Text', max_length=140, blank=True)
+    form_dataprotection = models.CharField(verbose_name='Formular // Datenschutz Text', max_length=200, blank=True)
+    form_requiredfields = models.CharField(verbose_name='Formular // Muss Felder Text', max_length=200, blank=True)
+    form_button = models.CharField(verbose_name='Formular // Button', max_length=200, blank=True)
+    form_successtitle = models.CharField(verbose_name='Formular // Erfolg Titel', max_length=80, blank=True)
+    form_successtext = models.TextField(verbose_name='Formular // Erfolg Text', blank=True)
+    form_successbutton = models.CharField(verbose_name='Formular // Erfolg Button', max_length=80, blank=True)
 
     class Meta:
         verbose_name = 'B: Seminar'
@@ -166,8 +166,6 @@ class Seminar(SingletonModel):
 
 
 class Member(SingletonModel):
-    meta_title = models.CharField('Meta Titel', blank=True, max_length=200)
-    meta_description = models.TextField('Meta Beschreibung', blank=True)
     content_pretitle = models.CharField(verbose_name='Inhalt Vortitel', max_length=80, blank=True)
     content_title = models.CharField(verbose_name='Inhalt Titel', max_length=80, blank=True)
 

@@ -127,6 +127,9 @@
                                             {% include 'symbols/svg_info.html' with svg='symbols/svg/solid-tag.svg' info='Preis auf Anfrage' %}
                                         {% endif %}
                                         {% include 'symbols/svg_info.html' with svg='symbols/svg/solid-globe-alt.svg' info=seminar.language %}
+                                        {% if seminar.status == 'ALMOST_FULL' %}
+                                            {% include 'symbols/svg_info.html' with svg='symbols/svg/solid-bell.svg' info=page.seminars_few_places %}
+                                        {% endif %}
                                     </div>
                                     <div class="flex flex-col mt-6 justify-between md:flex-row md:items-end">
                                         <div class="flex flex-col space-y-4 md:space-x-10 md:space-y-0 md:flex-row">

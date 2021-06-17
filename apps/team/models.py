@@ -10,7 +10,7 @@ class Member(models.Model):
                             help_text='Erscheint in der URL. Zum Beispiel: cocoo.de/team/max-mustermann/.')
     short_description = models.TextField(verbose_name='Kurzbeschreibung')
     description = HTMLField(verbose_name='Beschreibung')
-    image = models.ImageField(upload_to='member/', verbose_name='Bild')
+    old_image = models.ImageField(upload_to='member/', verbose_name='Bild')
     new_image = models.ForeignKey(Image, verbose_name='Neues Bild', on_delete=models.PROTECT, null=True)
     #
     created = models.DateTimeField(auto_now_add=True)
@@ -24,6 +24,10 @@ class Member(models.Model):
 
     def __str__(self):
         return self.name
+
+    @property
+    def image(self):
+        return self.new_image.image
 
     @property
     def name(self):
