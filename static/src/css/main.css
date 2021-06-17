@@ -2,7 +2,7 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-@import '../../../node_modules/aos/dist/aos.css';
+/*@import '../../../node_modules/aos/dist/aos.css';*/
 
 .errorlist {
     li {

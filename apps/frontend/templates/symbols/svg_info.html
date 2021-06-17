@@ -1,6 +1,5 @@
-{# <p class="flex items-center text-sm text-gray-500">#}
-<div class="flex items-center text-sm text-blue-050">
-    <div class="flex-shrink-0 mr-1.5 text-blue-100">
+<div class="flex items-center text-sm {{ color|default:'text-blue-050' }}">
+    <div class="flex-shrink-0 mr-1.5 {{ svg_color|default:'text-blue-100' }}">
         {% include svg %}
     </div>
     {{ info|safe }}
