@@ -9,3 +9,4 @@ tmp/static/*
 .idea
 __pycache__
 tmp/backup/*
+tmp/other/*
