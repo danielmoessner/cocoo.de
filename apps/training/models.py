@@ -82,6 +82,8 @@ class SeminarExecution(models.Model):
     price = models.DecimalField(max_digits=8, decimal_places=2, verbose_name='Preis', null=True, blank=True)
     early_booking_price = models.DecimalField(max_digits=8, decimal_places=2, verbose_name='Frühbucherpreis', null=True,
                                               blank=True)
+    price_text = models.CharField(verbose_name='Text nach dem Preis', blank=True, max_length=100,
+                                  help_text='Zum Beispiel: inkl. MwSt.')
     show_early_booking_price = models.BooleanField(verbose_name='Frühbucherpreis anzeigen')
     execution_hours = models.TextField(verbose_name='Durchführungszeiten')
     STATUS_CHOICES = (

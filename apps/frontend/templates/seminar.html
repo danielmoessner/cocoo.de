@@ -105,7 +105,7 @@
                                 <li data-aos="fade-up"
                                     data-aos-delay="100"
                                     class="rounded-2xl bg-blue-600 flex flex-col px-4 py-4 sm:pb-4 sm:pt-4 sm:px-5">
-                                    <div class="flex flex-col space-y-2 lg:space-x-6 lg:space-y-0 lg:flex-row lg:flex-wrap-none">
+                                    <div class="flex flex-col space-y-2 xl:space-x-6 xl:space-y-0 xl:flex-row xl:flex-wrap-none">
                                         {% with start_date=seminar.start_date|date:"d.m.Y" end_date=seminar.end_date|date:"d.m.Y" %}
                                             {% include 'symbols/svg_info.html' with svg='symbols/svg/solid-users.svg' info=start_date|add:" - "|add:end_date|add:"&nbsp;&nbsp;"|add:seminar.execution_hours %}
                                         {% endwith %}
@@ -118,10 +118,11 @@
                                                     </div>
                                                     <span class="line-through">{{ seminar.price|floatformat:2|add:' €' }}</span>
                                                     &nbsp;{{ seminar.early_booking_price|floatformat:2|add:' €' }}
+                                                    {{ seminar.price_text }}
                                                     {{ page.seminars_earlybooking }}
                                                 </div>
                                             {% else %}
-                                                {% include 'symbols/svg_info.html' with svg='symbols/svg/solid-tag.svg' info=seminar.price|floatformat:2|add:' €' %}
+                                                {% include 'symbols/svg_info.html' with svg='symbols/svg/solid-tag.svg' info=seminar.price|floatformat:2|add:' € '|add:seminar.price_text %}
                                             {% endif %}
                                         {% else %}
                                             {% include 'symbols/svg_info.html' with svg='symbols/svg/solid-tag.svg' info='Preis auf Anfrage' %}
