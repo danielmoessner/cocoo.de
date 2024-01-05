@@ -7,7 +7,7 @@ class ContactForm(forms.Form):
     last_name = forms.CharField(label='Nachname', required=True)
     email = forms.EmailField(label='E-Mail', required=True)
     message = forms.CharField(label='Nachricht', widget=forms.Textarea, required=True)
-    business1234 = forms.CharField(label='Honeypot', widget=forms.HiddenInput, required=True)
+    honey1234 = forms.CharField(label='Honeypot', widget=forms.HiddenInput, required=True)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -22,8 +22,8 @@ class ContactForm(forms.Form):
             data = '{}\n{}'.format(data, field_data)
         return data
 
-    def clean_business(self):
-        business = self.cleaned_data['business1234']
+    def clean_honey1234(self):
+        business = self.cleaned_data['honey1234']
         if business != '3948':
             raise forms.ValidationError('Leider ist da etwas schief gegangen. '
                                         'Bitte schreiben Sie uns eine E-Mail. Vielen Dank.')
@@ -38,7 +38,7 @@ class SeminarRegistrationForm(forms.Form):
     email = forms.EmailField(label='E-Mail', required=True)
     phone = forms.CharField(label='Telefon', required=True)
     amount_persons = forms.IntegerField(label='Anzahl Personen', required=True)
-    business1234 = forms.CharField(label='Honeypot', widget=forms.HiddenInput, required=True)
+    honey1234 = forms.CharField(label='Honeypot', widget=forms.HiddenInput, required=True)
     topic = forms.ModelChoiceField(label='Seminarthema', widget=forms.HiddenInput, queryset=SeminarTopic.objects.all())
     message = forms.CharField(label='Nachricht', widget=forms.Textarea(attrs={'rows': 4, 'cols': 10}), required=False)
 
@@ -58,8 +58,8 @@ class SeminarRegistrationForm(forms.Form):
             data = '{}\n{}'.format(data, field_data)
         return data
 
-    def clean_business(self):
-        business = self.cleaned_data['business1234']
+    def clean_honey1234(self):
+        business = self.cleaned_data['honey1234']
         if business != '3948':
             raise forms.ValidationError('Leider ist da etwas schief gegangen. '
                                         'Bitte schreiben Sie uns eine E-Mail. Vielen Dank.')
