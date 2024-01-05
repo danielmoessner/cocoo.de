@@ -15,7 +15,7 @@ touch tmp/secrets.json
 
 # install everything
 apt update
-apt install python3-pip python3-venv python3-dev apache2 libapache2-mod-wsgi-py3 libpq-dev snapd gettext
+apt install python3-pip python3-venv python3-dev apache2 libapache2-mod-wsgi-py3 libpq-dev snapd gettext libjpeg-dev zlib1g-dev
 snap install core
 snap refresh core
 snap install --classic certbot
