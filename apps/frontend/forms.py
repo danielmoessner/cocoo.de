@@ -7,7 +7,7 @@ class ContactForm(forms.Form):
     last_name = forms.CharField(label='Nachname', required=True)
     email = forms.EmailField(label='E-Mail', required=True)
     message = forms.CharField(label='Nachricht', widget=forms.Textarea, required=True)
-    honey1234 = forms.CharField(label='Honeypot', widget=forms.HiddenInput, required=True)
+    honey1234 = forms.CharField(label='Honeypot', widget=forms.HiddenInput(attrs={"autocomplete": "off"}), required=False)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
