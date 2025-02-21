@@ -161,12 +161,14 @@ TINYMCE_DEFAULT_CONFIG = {
 }
 
 # E-Mail
-EMAIL_USE_TLS = True
-EMAIL_HOST = get_secret('EMAIL_HOST')
-EMAIL_HOST_USER = get_secret('EMAIL_USER')
-EMAIL_HOST_PASSWORD = get_secret('EMAIL_PWD')
-EMAIL_PORT = 587
-DEFAULT_FROM_EMAIL = get_secret('DEFAULT_FROM_EMAIL')
+EMAIL_BACKEND = 'apps.settings.backend.DbEmailBackend'
+
+EMAIL_HOST = 'localhost'
+EMAIL_PORT = 25
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
+EMAIL_USE_TLS = False
+DEFAULT_FROM_EMAIL = 'info@example.com'
 
 
 # check whether the site should be password protected

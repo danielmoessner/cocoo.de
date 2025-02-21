@@ -3,7 +3,7 @@ from config.settings.base import *
 # Application definition
 DEBUG = False
 ALLOWED_HOSTS = get_secret('ALLOWED_HOSTS')
-
+EMAIL_BACKEND = 'apps.settings.backend.DbEmailBackend'
 # Logging definition
 LOGGING_DIR = os.path.join(BASE_DIR, 'tmp/logs')
 
