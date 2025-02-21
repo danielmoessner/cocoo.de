@@ -161,7 +161,7 @@ TINYMCE_DEFAULT_CONFIG = {
 }
 
 # E-Mail
-EMAIL_BACKEND = 'apps.settings.backend.DbEmailBackend'
+EMAIL_BACKEND = 'apps.settings.email_backend.DbEmailBackend'
 
 EMAIL_HOST = 'localhost'
 EMAIL_PORT = 25
